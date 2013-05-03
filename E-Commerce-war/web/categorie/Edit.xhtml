@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.EditCategorieTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.EditCategorieLabel_super_cat}" for="super_cat" />
+                    <h:selectOneMenu id="super_cat" value="#{categorieController.selected.super_cat}" title="#{bundle.EditCategorieTitle_super_cat}" >
+                        <f:selectItems value="#{group_categorieController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                    <h:outputLabel value="#{bundle.EditCategorieLabel_createdBye}" for="createdBye" />
+                    <h:selectOneMenu id="createdBye" value="#{categorieController.selected.createdBye}" title="#{bundle.EditCategorieTitle_createdBye}" >
+                        <f:selectItems value="#{employeController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                    <h:outputLabel value="#{bundle.EditCategorieLabel_libelle_cat}" for="libelle_cat" />
+                    <h:inputText id="libelle_cat" value="#{categorieController.selected.libelle_cat}" title="#{bundle.EditCategorieTitle_libelle_cat}" />
+                    <h:outputLabel value="#{bundle.EditCategorieLabel_id}" for="id" />
+                    <h:inputText id="id" value="#{categorieController.selected.id}" title="#{bundle.EditCategorieTitle_id}" />
+                </h:panelGrid>
+                <h:commandLink action="#{categorieController.update}" value="#{bundle.EditCategorieSaveLink}"/>
+                <br />
+                <br />
+                <h:link outcome="View" value="#{bundle.EditCategorieViewLink}"/>
+                <br />
+                <h:commandLink action="#{categorieController.prepareList}" value="#{bundle.EditCategorieShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.EditCategorieIndexLink}" />
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

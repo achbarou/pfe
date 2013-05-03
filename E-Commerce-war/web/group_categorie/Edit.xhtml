@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.EditGroup_categorieTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.EditGroup_categorieLabel_createdBy}" for="createdBy" />
+                    <h:selectOneMenu id="createdBy" value="#{group_categorieController.selected.createdBy}" title="#{bundle.EditGroup_categorieTitle_createdBy}" >
+                        <f:selectItems value="#{employeController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                    <h:outputLabel value="#{bundle.EditGroup_categorieLabel_libelle_GroupCat}" for="libelle_GroupCat" />
+                    <h:inputText id="libelle_GroupCat" value="#{group_categorieController.selected.libelle_GroupCat}" title="#{bundle.EditGroup_categorieTitle_libelle_GroupCat}" />
+                    <h:outputLabel value="#{bundle.EditGroup_categorieLabel_id}" for="id" />
+                    <h:inputText id="id" value="#{group_categorieController.selected.id}" title="#{bundle.EditGroup_categorieTitle_id}" />
+                </h:panelGrid>
+                <h:commandLink action="#{group_categorieController.update}" value="#{bundle.EditGroup_categorieSaveLink}"/>
+                <br />
+                <br />
+                <h:link outcome="View" value="#{bundle.EditGroup_categorieViewLink}"/>
+                <br />
+                <h:commandLink action="#{group_categorieController.prepareList}" value="#{bundle.EditGroup_categorieShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.EditGroup_categorieIndexLink}" />
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>
