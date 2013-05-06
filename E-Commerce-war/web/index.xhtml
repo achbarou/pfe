@@ -1,26 +1,103 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://java.sun.com/jsf/html">
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
     <h:head>
-        <title>Facelet Title</title>
+        <title>Admin Ecommerce</title>
         <h:outputStylesheet name="css/jsfcrud.css"/>
     </h:head>
     <h:body>
-        Hello from Facelets
-        <br />
-        <h:link outcome="/categorie/List" value="Show All Categorie Items"/>
+        <ui:composition template="template.xhtml">
+            <ui:define name="title">Tableau de board</ui:define>
+            <ui:define name="body">
+                <fieldset>
+                    <legend>Statistiques</legend>
+                    <table style="float: left;">
+                        <tr>
+                            <td width="30px" height="30px"><div style="width: 26px;height: 26px;background-color: #8FD2EF;border: 2px solid #2FB6F0;"></div></td>
+                            <td style="padding-right: 10px;">Ventes</td>
+                        </tr>
+                        <tr ><td height="10px"></td></tr>
+                        <tr>
+                            <td width="30px" height="30px"><div style="width: 26px;height: 26px;background-color: #DCE58F;border: 2px solid #C9DC2C;"></div></td>
+                            <td style="padding-right: 10px;">Achats</td>
+                        </tr>
+                    </table>
+                    <div>
+                    </div>
+                    <div style="clear: both; height: 10px;"></div>
+                    <h:panelGroup id="flot">
+                        <div id="graph" style="height: 500px;"> </div>
+                        <h:outputScript library="js" name="flotr2.min.js" />
+                        <script type="text/javascript">
+                            // <![CDATA[ 
+                            (function basic_bars(container, horizontal) {
+
+                                var horizontal = ( horizontal ? true : false),
+                                // Show horizontal bars
+                                d1 = [],
+                                // First data series
+                                d2 = [],
+                                // Second data series
+                                point, // Data point variable declaration
+                                i;
+
+                                for ( i = 1; i < 13; i++) {
+
+                                    if (horizontal) {
+                                        point = [Math.ceil(Math.random() * 100), i];
+                                    } else {
+                                        point = [i, Math.ceil(Math.random() * 100)];
+                                    }
+                                    d1.push(point);
+
+                                    if (horizontal) {
+                                        point = [Math.ceil(Math.random() * 100), i + 0.5];
+                                    } else {
+                                        point = [i + 0.5, Math.ceil(Math.random() * 100)];
+                                    }
+
+                                    d2.push(point);
+                                };
+
+                                // Draw the graph
+                                Flotr.draw(container, [d1, d2], {
+                                    bars : {
+                                        show : true,
+                                        horizontal : horizontal,
+                                        shadowSize : 0,
+                                        barWidth : 0.5
+                                    },
+                                    mouse : {
+                                        track : true,
+                                        relative : true
+                                    },
+                                    xaxis:{
+                                        title : 'Mois',
+                                        tickSize : 1,
+                                        min: 1,
+                                        ticks: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
+                                    },
+                                    yaxis : {
+                                        title : 'CA',
+                                        min : 0,
+                                        autoscaleMargin : 1
+                                    },
+                                    legend: { show: false }
+                                });
+                            })(document.getElementById("graph"));
+                            // ]]> 
+                        </script>
+                    </h:panelGroup>
+                </fieldset>
+            </ui:define>
+        </ui:composition>
         <br />
         <h:link outcome="/employe/List" value="Show All Employe Items"/>
         <br />
         <h:link outcome="/fournisseur/List" value="Show All Fournisseur Items"/>
-        <br />
-        <h:link outcome="/group_categorie/List" value="Show All Group_categorie Items"/>
-        <br />
-        <h:link outcome="/produit/List" value="Show All Produit Items"/>
     </h:body>
-
-
 
 
 

@@ -1,8 +1,9 @@
 package controller;
 
+import entity.Fournisseur;
 import controller.util.JsfUtil;
 import controller.util.PaginationHelper;
-import entity.Fournisseur;
+import session.FournisseurFacade;
 
 import java.io.Serializable;
 import java.util.ResourceBundle;
@@ -16,7 +17,6 @@ import javax.faces.convert.FacesConverter;
 import javax.faces.model.DataModel;
 import javax.faces.model.ListDataModel;
 import javax.faces.model.SelectItem;
-import session.FournisseurFacade;
 
 @ManagedBean(name = "fournisseurController")
 @SessionScoped
@@ -25,7 +25,7 @@ public class FournisseurController implements Serializable {
     private Fournisseur current;
     private DataModel items = null;
     @EJB
-    private FournisseurFacade ejbFacade;
+    private session.FournisseurFacade ejbFacade;
     private PaginationHelper pagination;
     private int selectedItemIndex;
 

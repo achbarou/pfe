@@ -84,8 +84,8 @@ public class CategorieController implements Serializable {
     }
 
     public String create() {
-        List<Employe> empls = ejbFacade2.findAll();
-        current.setCreatedBye(empls.get(0));
+        //List<Employe> empls = ejbFacade2.findAll();
+        //current.setCreatedBye(empls.get(0));
         try {
             getFacade().create(current);
             JsfUtil.addSuccessMessage(ResourceBundle.getBundle("/Bundle").getString("CategorieCreated"));

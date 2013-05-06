@@ -15,6 +15,14 @@
             </h:panelGroup>
             <h:form>
                 <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.CreateCategorieLabel_super_cat}" for="super_cat" />
+                    <h:selectOneMenu id="super_cat" value="#{categorieController.selected.super_cat}" title="#{bundle.CreateCategorieTitle_super_cat}" >
+                        <f:selectItems value="#{group_categorieController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                    <h:outputLabel value="#{bundle.CreateCategorieLabel_createdBye}" for="createdBye" />
+                    <h:selectOneMenu id="createdBye" value="#{categorieController.selected.createdBye}" title="#{bundle.CreateCategorieTitle_createdBye}" >
+                        <f:selectItems value="#{employeController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
                     <h:outputLabel value="#{bundle.CreateCategorieLabel_libelle_cat}" for="libelle_cat" />
                     <h:inputText id="libelle_cat" value="#{categorieController.selected.libelle_cat}" title="#{bundle.CreateCategorieTitle_libelle_cat}" />
                </h:panelGrid>

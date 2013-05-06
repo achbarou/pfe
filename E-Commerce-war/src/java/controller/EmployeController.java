@@ -1,8 +1,9 @@
 package controller;
 
+import entity.Employe;
 import controller.util.JsfUtil;
 import controller.util.PaginationHelper;
-import entity.Employe;
+import session.EmployeFacade;
 
 import java.io.Serializable;
 import java.util.ResourceBundle;
@@ -16,7 +17,6 @@ import javax.faces.convert.FacesConverter;
 import javax.faces.model.DataModel;
 import javax.faces.model.ListDataModel;
 import javax.faces.model.SelectItem;
-import session.EmployeFacade;
 
 @ManagedBean(name = "employeController")
 @SessionScoped
@@ -25,7 +25,7 @@ public class EmployeController implements Serializable {
     private Employe current;
     private DataModel items = null;
     @EJB
-    private EmployeFacade ejbFacade;
+    private session.EmployeFacade ejbFacade;
     private PaginationHelper pagination;
     private int selectedItemIndex;
 
