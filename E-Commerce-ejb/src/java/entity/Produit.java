@@ -34,6 +34,17 @@ public class Produit implements Serializable {
     private Employe createdBy ;
     @ManyToOne
     private Categorie categorie ;
+    @ManyToOne
+    private Fournisseur fournisseur;
+
+    public Fournisseur getFournisseur() {
+        return fournisseur;
+    }
+
+    public void setFournisseur(Fournisseur fournisseur) {
+        this.fournisseur = fournisseur;
+    }
+    
 
     public Long getId() {
         return id;
