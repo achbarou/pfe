@@ -3,15 +3,14 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:ui="http://java.sun.com/jsf/facelets"
       xmlns:h="http://java.sun.com/jsf/html"
-      xmlns:f="http://java.sun.com/jsf/core"
-      xmlns:b="http://richfaces.org/sandbox/bootstrap">
+      xmlns:f="http://java.sun.com/jsf/core">
 
     <ui:composition template="/template.xhtml">
         <ui:define name="title">
             <h:outputText value="#{bundle.ListCategorieTitle}"></h:outputText>
         </ui:define>
         <ui:define name="body">
-            <h:form prependId="false">
+            <h:form styleClass="jsfcrud_list_form">
                 <h:panelGroup id="messagePanel" layout="block">
                     <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
                 </h:panelGroup>
@@ -20,7 +19,7 @@
                     <h:outputText value="#{categorieController.pagination.pageFirstItem + 1}..#{categorieController.pagination.pageLastItem + 1}/#{categorieController.pagination.itemsCount}"/>&nbsp;
                     <h:commandLink action="#{categorieController.previous}" value="#{bundle.Previous} #{categorieController.pagination.pageSize}" rendered="#{categorieController.pagination.hasPreviousPage}"/>&nbsp;
                     <h:commandLink action="#{categorieController.next}" value="#{bundle.Next} #{categorieController.pagination.pageSize}" rendered="#{categorieController.pagination.hasNextPage}"/>&nbsp;
-                    <h:dataTable value="#{categorieController.items}" var="item" styleClass="table-striped table-condensed" border="0" cellpadding="2" cellspacing="0" rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" style="border:solid 1px ;width: 100%;">
+                    <h:dataTable value="#{categorieController.items}" var="item" border="0" cellpadding="2" cellspacing="0" rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" style="border:solid 1px">
                         <h:column>
                             <f:facet name="header">
                                 <h:outputText value="#{bundle.ListCategorieTitle_super_cat}"/>
@@ -47,53 +46,23 @@
                         </h:column>
                         <h:column>
                             <f:facet name="header">
-                                <h:outputText value="Action"/>
+                                <h:outputText value="&nbsp;"/>
                             </f:facet>
-                            <a title="view" href="#" onclick="#{b:show('viewModal')}">
-                                <font size="+1" title="View"><i class="icon-eye-open" style="color: black"></i></font>
-                            </a>
+                            <h:commandLink action="#{categorieController.prepareView}" value="#{bundle.ListCategorieViewLink}"/>
                             <h:outputText value=" "/>
-                            <h:commandLink action="#{categorieController.prepareEdit}">
-                                <font size="+1" title="Edit"><i class="icon-edit" style="color: orange"> </i></font>
-                            </h:commandLink>
+                            <h:commandLink action="#{categorieController.prepareEdit}" value="#{bundle.ListCategorieEditLink}"/>
                             <h:outputText value=" "/>
-                            <a title="remove" href="#" onclick="#{b:show('destroyModal')}">
-                                <font size="+1" title="Remove"><i class="icon-remove" style="color: red"></i></font>
-                            </a>
-                            <b:modal id="destroyModal" style="width: 400px; margin: -200px;" closeable="false">
-                                <b:headerFacet>
-                                    <h3 class="icon-ok-sign" style="text-align: right;"> Confirmation de suppression</h3>
-                                </b:headerFacet>
-                                <b:bodyFacet>
-                                    <p style="text-align: left;">êtes-vous sure?</p>
-                                </b:bodyFacet>
-                                <b:footerFacet>
-                                    <b:commandButton value="Oui" severity="danger" action="#{categorieController.destroy()}" onclick="#{categorieController.prepareList()}"/>
-                                    <h:outputText value=" "/>
-                                    <b:commandButton value="Non" mode="client" onclick="#{b:hide('destroyModal')}" />
-                                </b:footerFacet>
-                            </b:modal>
-                            <b:modal id="viewModal" style="width: 400px; margin: -200px;" closeable="false">
-                                <b:headerFacet>
-                                    <h3 class="icon-eye-open" style="text-align: left;"> Détail de la catégorie:</h3>
-                                </b:headerFacet>
-                                <b:bodyFacet>
-                                    id: #{item.id}<br />
-                                    created by: #{item.createdBye.nom} #{item.createdBye.prenom}
-                                </b:bodyFacet>
-                                <b:footerFacet>
-                                    <b:commandButton value="Ok" onclick="#{b:hide('viewModal')}" />
-                                </b:footerFacet>
-                            </b:modal>
+                            <h:commandLink action="#{categorieController.destroy}" value="#{bundle.ListCategorieDestroyLink}"/>
                         </h:column>
                     </h:dataTable>
                 </h:panelGroup>
                 <br />
-                <h:commandLink styleClass="btn btn-primary" action="#{categorieController.prepareCreate}" value="#{bundle.ListCategorieCreateLink}"/>
+                <h:commandLink action="#{categorieController.prepareCreate}" value="#{bundle.ListCategorieCreateLink}"/>
                 <br />
                 <br />
                 <h:link outcome="/index" value="#{bundle.ListCategorieIndexLink}"/>
             </h:form>
         </ui:define>
     </ui:composition>
+
 </html>

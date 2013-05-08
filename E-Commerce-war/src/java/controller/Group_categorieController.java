@@ -3,8 +3,8 @@ package controller;
 import controller.util.JsfUtil;
 import controller.util.PaginationHelper;
 import entity.Group_categorie;
-
 import java.io.Serializable;
+
 import java.util.ResourceBundle;
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
@@ -25,7 +25,7 @@ public class Group_categorieController implements Serializable {
     private Group_categorie current;
     private DataModel items = null;
     @EJB
-    private Group_categorieFacade ejbFacade;
+    private session.Group_categorieFacade ejbFacade;
     private PaginationHelper pagination;
     private int selectedItemIndex;
 
@@ -81,10 +81,10 @@ public class Group_categorieController implements Serializable {
     public String create() {
         try {
             getFacade().create(current);
-            JsfUtil.addSuccessMessage(ResourceBundle.getBundle("/Bundle").getString("Group_categorieCreated"));
+            JsfUtil.addSuccessMessage(ResourceBundle.getBundle("/Bundle2").getString("Group_categorieCreated"));
             return prepareCreate();
         } catch (Exception e) {
-            JsfUtil.addErrorMessage(e, ResourceBundle.getBundle("/Bundle").getString("PersistenceErrorOccured"));
+            JsfUtil.addErrorMessage(e, ResourceBundle.getBundle("/Bundle2").getString("PersistenceErrorOccured"));
             return null;
         }
     }
@@ -98,10 +98,10 @@ public class Group_categorieController implements Serializable {
     public String update() {
         try {
             getFacade().edit(current);
-            JsfUtil.addSuccessMessage(ResourceBundle.getBundle("/Bundle").getString("Group_categorieUpdated"));
+            JsfUtil.addSuccessMessage(ResourceBundle.getBundle("/Bundle2").getString("Group_categorieUpdated"));
             return "View";
         } catch (Exception e) {
-            JsfUtil.addErrorMessage(e, ResourceBundle.getBundle("/Bundle").getString("PersistenceErrorOccured"));
+            JsfUtil.addErrorMessage(e, ResourceBundle.getBundle("/Bundle2").getString("PersistenceErrorOccured"));
             return null;
         }
     }
@@ -131,9 +131,9 @@ public class Group_categorieController implements Serializable {
     private void performDestroy() {
         try {
             getFacade().remove(current);
-            JsfUtil.addSuccessMessage(ResourceBundle.getBundle("/Bundle").getString("Group_categorieDeleted"));
+            JsfUtil.addSuccessMessage(ResourceBundle.getBundle("/Bundle2").getString("Group_categorieDeleted"));
         } catch (Exception e) {
-            JsfUtil.addErrorMessage(e, ResourceBundle.getBundle("/Bundle").getString("PersistenceErrorOccured"));
+            JsfUtil.addErrorMessage(e, ResourceBundle.getBundle("/Bundle2").getString("PersistenceErrorOccured"));
         }
     }
 

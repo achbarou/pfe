@@ -25,7 +25,9 @@
                     </h:selectOneMenu>
                     <h:outputLabel value="#{bundle.CreateCategorieLabel_libelle_cat}" for="libelle_cat" />
                     <h:inputText id="libelle_cat" value="#{categorieController.selected.libelle_cat}" title="#{bundle.CreateCategorieTitle_libelle_cat}" />
-               </h:panelGrid>
+                    <h:outputLabel value="#{bundle.CreateCategorieLabel_id}" for="id" />
+                    <h:inputText id="id" value="#{categorieController.selected.id}" title="#{bundle.CreateCategorieTitle_id}" />
+                </h:panelGrid>
                 <br />
                 <h:commandLink action="#{categorieController.create}" value="#{bundle.CreateCategorieSaveLink}" />
                 <br />

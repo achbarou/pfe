@@ -3,9 +3,7 @@ package controller;
 import controller.util.JsfUtil;
 import controller.util.PaginationHelper;
 import entity.Categorie;
-import entity.Employe;
 import java.io.Serializable;
-import java.util.List;
 
 import java.util.ResourceBundle;
 import javax.ejb.EJB;
@@ -19,7 +17,6 @@ import javax.faces.model.DataModel;
 import javax.faces.model.ListDataModel;
 import javax.faces.model.SelectItem;
 import session.CategorieFacade;
-import session.EmployeFacade;
 
 @ManagedBean(name = "categorieController")
 @SessionScoped
@@ -28,9 +25,7 @@ public class CategorieController implements Serializable {
     private Categorie current;
     private DataModel items = null;
     @EJB
-    private CategorieFacade ejbFacade;
-    @EJB
-    private EmployeFacade ejbFacade2;
+    private session.CategorieFacade ejbFacade;
     private PaginationHelper pagination;
     private int selectedItemIndex;
 
@@ -84,14 +79,12 @@ public class CategorieController implements Serializable {
     }
 
     public String create() {
-        //List<Employe> empls = ejbFacade2.findAll();
-        //current.setCreatedBye(empls.get(0));
         try {
             getFacade().create(current);
-            JsfUtil.addSuccessMessage(ResourceBundle.getBundle("/Bundle").getString("CategorieCreated"));
+            JsfUtil.addSuccessMessage(ResourceBundle.getBundle("/Bundle2").getString("CategorieCreated"));
             return prepareCreate();
         } catch (Exception e) {
-            JsfUtil.addErrorMessage(e, ResourceBundle.getBundle("/Bundle").getString("PersistenceErrorOccured"));
+            JsfUtil.addErrorMessage(e, ResourceBundle.getBundle("/Bundle2").getString("PersistenceErrorOccured"));
             return null;
         }
     }
@@ -105,10 +98,10 @@ public class CategorieController implements Serializable {
     public String update() {
         try {
             getFacade().edit(current);
-            JsfUtil.addSuccessMessage(ResourceBundle.getBundle("/Bundle").getString("CategorieUpdated"));
+            JsfUtil.addSuccessMessage(ResourceBundle.getBundle("/Bundle2").getString("CategorieUpdated"));
             return "View";
         } catch (Exception e) {
-            JsfUtil.addErrorMessage(e, ResourceBundle.getBundle("/Bundle").getString("PersistenceErrorOccured"));
+            JsfUtil.addErrorMessage(e, ResourceBundle.getBundle("/Bundle2").getString("PersistenceErrorOccured"));
             return null;
         }
     }
@@ -138,9 +131,9 @@ public class CategorieController implements Serializable {
     private void performDestroy() {
         try {
             getFacade().remove(current);
-            JsfUtil.addSuccessMessage(ResourceBundle.getBundle("/Bundle").getString("CategorieDeleted"));
+            JsfUtil.addSuccessMessage(ResourceBundle.getBundle("/Bundle2").getString("CategorieDeleted"));
         } catch (Exception e) {
-            JsfUtil.addErrorMessage(e, ResourceBundle.getBundle("/Bundle").getString("PersistenceErrorOccured"));
+            JsfUtil.addErrorMessage(e, ResourceBundle.getBundle("/Bundle2").getString("PersistenceErrorOccured"));
         }
     }
 
