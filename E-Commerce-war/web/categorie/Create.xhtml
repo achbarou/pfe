@@ -3,7 +3,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:ui="http://java.sun.com/jsf/facelets"
       xmlns:h="http://java.sun.com/jsf/html"
-      xmlns:f="http://java.sun.com/jsf/core">
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:b="http://richfaces.org/sandbox/bootstrap">
 
     <ui:composition template="/template.xhtml">
         <ui:define name="title">
@@ -15,27 +16,31 @@
             </h:panelGroup>
             <h:form>
                 <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.CreateCategorieLabel_libelle_cat}" for="libelle_cat" />
+                    <h:inputText id="libelle_cat" value="#{categorieController.selected.libelle_cat}" title="#{bundle.CreateCategorieTitle_libelle_cat}" />
+                    <h:outputLabel value="Description" for="description" />
+                    <h:inputTextarea id="description" value="#{categorieController.selected.description}" title="description" />
                     <h:outputLabel value="#{bundle.CreateCategorieLabel_super_cat}" for="super_cat" />
                     <h:selectOneMenu id="super_cat" value="#{categorieController.selected.super_cat}" title="#{bundle.CreateCategorieTitle_super_cat}" >
                         <f:selectItems value="#{group_categorieController.itemsAvailableSelectOne}"/>
                     </h:selectOneMenu>
+                    <h:outputLabel value="Etat :" for="Etat" />
+                    <h:selectOneRadio id="etat" value="#{categorieController.selected.etat}">
+                        <f:selectItem itemValue='true' itemLabel="Activer" />
+                        <f:selectItem itemValue='false' itemLabel="Desactiver" />
+                    </h:selectOneRadio>
                     <h:outputLabel value="#{bundle.CreateCategorieLabel_createdBye}" for="createdBye" />
                     <h:selectOneMenu id="createdBye" value="#{categorieController.selected.createdBye}" title="#{bundle.CreateCategorieTitle_createdBye}" >
                         <f:selectItems value="#{employeController.itemsAvailableSelectOne}"/>
                     </h:selectOneMenu>
-                    <h:outputLabel value="#{bundle.CreateCategorieLabel_libelle_cat}" for="libelle_cat" />
-                    <h:inputText id="libelle_cat" value="#{categorieController.selected.libelle_cat}" title="#{bundle.CreateCategorieTitle_libelle_cat}" />
-                    <h:outputLabel value="#{bundle.CreateCategorieLabel_id}" for="id" />
-                    <h:inputText id="id" value="#{categorieController.selected.id}" title="#{bundle.CreateCategorieTitle_id}" />
                 </h:panelGrid>
-                <br />
-                <h:commandLink action="#{categorieController.create}" value="#{bundle.CreateCategorieSaveLink}" />
-                <br />
-                <br />
-                <h:commandLink action="#{categorieController.prepareList}" value="#{bundle.CreateCategorieShowAllLink}" immediate="true"/>
-                <br />
-                <br />
-                <h:link outcome="/index" value="#{bundle.CreateCategorieIndexLink}"/>
+                <br/>
+                <b:gridColumn span="4">
+                    <h:panelGrid columns="2">
+                        <h:commandLink class="btn btn-primary" action="#{categorieController.create}" value=" #{bundle.CreateCategorieSaveLink}" />
+                        <h:commandLink class="btn btn-success" action="#{categorieController.prepareList}" value="#{bundle.CreateCategorieShowAllLink}" immediate="true"/>
+                    </h:panelGrid>
+                </b:gridColumn>
             </h:form>
         </ui:define>
     </ui:composition>

@@ -19,12 +19,12 @@
                     <h:outputText value="#{group_categorieController.pagination.pageFirstItem + 1}..#{group_categorieController.pagination.pageLastItem + 1}/#{group_categorieController.pagination.itemsCount}"/>&nbsp;
                     <h:commandLink action="#{group_categorieController.previous}" value="#{bundle.Previous} #{group_categorieController.pagination.pageSize}" rendered="#{group_categorieController.pagination.hasPreviousPage}"/>&nbsp;
                     <h:commandLink action="#{group_categorieController.next}" value="#{bundle.Next} #{group_categorieController.pagination.pageSize}" rendered="#{group_categorieController.pagination.hasNextPage}"/>&nbsp;
-                    <h:dataTable value="#{group_categorieController.items}" var="item" border="0" cellpadding="2" cellspacing="0" rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" style="border:solid 1px">
+                    <h:dataTable value="#{group_categorieController.items}" var="item" border="0" cellpadding="2" cellspacing="0" rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" style="width: 100%">
                         <h:column>
                             <f:facet name="header">
-                                <h:outputText value="#{bundle.ListGroup_categorieTitle_createdBy}"/>
+                                <h:outputText value="#{bundle.ListGroup_categorieTitle_id}"/>
                             </f:facet>
-                            <h:outputText value="#{item.createdBy}"/>
+                            <h:outputText value="#{item.id}"/>
                         </h:column>
                         <h:column>
                             <f:facet name="header">
@@ -34,27 +34,36 @@
                         </h:column>
                         <h:column>
                             <f:facet name="header">
-                                <h:outputText value="#{bundle.ListGroup_categorieTitle_id}"/>
+                                <h:outputText value="Etat"/>
                             </f:facet>
-                            <h:outputText value="#{item.id}"/>
+                            <h:outputText value="#{item.etat}"/>
                         </h:column>
                         <h:column>
                             <f:facet name="header">
-                                <h:outputText value="&nbsp;"/>
+                                <h:outputText value="#{bundle.ListGroup_categorieTitle_createdBy}"/>
                             </f:facet>
-                            <h:commandLink action="#{group_categorieController.prepareView}" value="#{bundle.ListGroup_categorieViewLink}"/>
-                            <h:outputText value=" "/>
-                            <h:commandLink action="#{group_categorieController.prepareEdit}" value="#{bundle.ListGroup_categorieEditLink}"/>
-                            <h:outputText value=" "/>
-                            <h:commandLink action="#{group_categorieController.destroy}" value="#{bundle.ListGroup_categorieDestroyLink}"/>
+                            <h:outputText value="#{item.createdBy}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="Action"/>
+                            </f:facet>
+                            <h:commandLink action="#{group_categorieController.prepareView}">
+                                <font size="+1" title="View"><i class="icon-eye-open" style="color: black"></i></font>
+                            </h:commandLink>
+                            <h:commandLink action="#{group_categorieController.prepareEdit}">
+                                <font size="+1" title="Edit"><i class="icon-edit" style="color: Orange"></i></font>
+                            </h:commandLink>
+                            <h:commandLink action="#{group_categorieController.destroy}">
+                                <font size="+1" title="Remove"><i class="icon-remove" style="color: red"></i></font>
+                            </h:commandLink>
                         </h:column>
                     </h:dataTable>
                 </h:panelGroup>
                 <br />
-                <h:commandLink action="#{group_categorieController.prepareCreate}" value="#{bundle.ListGroup_categorieCreateLink}"/>
-                <br />
-                <br />
-                <h:link outcome="/index" value="#{bundle.ListGroup_categorieIndexLink}"/>
+                <h:commandLink class="btn btn-primary" action="#{group_categorieController.prepareCreate}">
+                    <i class="icon-white icon-plus-sign"></i> #{bundle.ListGroup_categorieCreateLink} 
+                </h:commandLink>
             </h:form>
         </ui:define>
     </ui:composition>

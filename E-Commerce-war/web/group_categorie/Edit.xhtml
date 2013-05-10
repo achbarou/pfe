@@ -3,7 +3,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:ui="http://java.sun.com/jsf/facelets"
       xmlns:h="http://java.sun.com/jsf/html"
-      xmlns:f="http://java.sun.com/jsf/core">
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:b="http://richfaces.org/sandbox/bootstrap">
 
     <ui:composition template="/template.xhtml">
         <ui:define name="title">
@@ -15,24 +16,26 @@
             </h:panelGroup>
             <h:form>
                 <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.EditGroup_categorieLabel_libelle_GroupCat}" for="libelle_GroupCat" />
+                    <h:inputText id="libelle_GroupCat" value="#{group_categorieController.selected.libelle_GroupCat}" title="#{bundle.EditGroup_categorieTitle_libelle_GroupCat}" />
+                    <h:outputLabel value="Description" for="description" />
+                    <h:inputTextarea id="description" value="#{group_categorieController.selected.description}" title="description" />
+                    <h:outputLabel value="Etat :" for="Etat" />
+                    <h:selectOneRadio id="etat" value="#{group_categorieController.selected.etat}">
+                        <f:selectItem itemValue='true' itemLabel="Activer" />
+                        <f:selectItem itemValue='false' itemLabel="Desactiver" />
+                    </h:selectOneRadio>
                     <h:outputLabel value="#{bundle.EditGroup_categorieLabel_createdBy}" for="createdBy" />
                     <h:selectOneMenu id="createdBy" value="#{group_categorieController.selected.createdBy}" title="#{bundle.EditGroup_categorieTitle_createdBy}" >
                         <f:selectItems value="#{employeController.itemsAvailableSelectOne}"/>
                     </h:selectOneMenu>
-                    <h:outputLabel value="#{bundle.EditGroup_categorieLabel_libelle_GroupCat}" for="libelle_GroupCat" />
-                    <h:inputText id="libelle_GroupCat" value="#{group_categorieController.selected.libelle_GroupCat}" title="#{bundle.EditGroup_categorieTitle_libelle_GroupCat}" />
-                    <h:outputLabel value="#{bundle.EditGroup_categorieLabel_id}" for="id" />
-                    <h:inputText id="id" value="#{group_categorieController.selected.id}" title="#{bundle.EditGroup_categorieTitle_id}" />
                 </h:panelGrid>
-                <h:commandLink action="#{group_categorieController.update}" value="#{bundle.EditGroup_categorieSaveLink}"/>
-                <br />
-                <br />
-                <h:link outcome="View" value="#{bundle.EditGroup_categorieViewLink}"/>
-                <br />
-                <h:commandLink action="#{group_categorieController.prepareList}" value="#{bundle.EditGroup_categorieShowAllLink}" immediate="true"/>
-                <br />
-                <br />
-                <h:link outcome="/index" value="#{bundle.EditGroup_categorieIndexLink}" />
+                 <b:gridColumn span="4">
+                    <h:panelGrid columns="2">
+                        <h:commandLink class="btn btn-primary" action="#{group_categorieController.update}" value="#{bundle.EditGroup_categorieSaveLink}"/>
+                        <h:commandLink class="btn btn-success" action="#{group_categorieController.prepareList}" value="#{bundle.EditGroup_categorieShowAllLink}" immediate="true"/>
+                    </h:panelGrid>
+                </b:gridColumn>
             </h:form>
         </ui:define>
     </ui:composition>

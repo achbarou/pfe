@@ -131,7 +131,7 @@ public class Fournisseur implements Serializable {
 
     @Override
     public String toString() {
-        return "entity.Fournisseur[ id=" + id + " ]";
+        return nom_fourni;
     }
     
 }

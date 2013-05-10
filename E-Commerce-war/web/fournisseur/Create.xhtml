@@ -3,7 +3,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:ui="http://java.sun.com/jsf/facelets"
       xmlns:h="http://java.sun.com/jsf/html"
-      xmlns:f="http://java.sun.com/jsf/core">
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:b="http://richfaces.org/sandbox/bootstrap">
 
     <ui:composition template="/template.xhtml">
         <ui:define name="title">
@@ -15,10 +16,6 @@
             </h:panelGroup>
             <h:form>
                 <h:panelGrid columns="2">
-                    <h:outputLabel value="#{bundle.CreateFournisseurLabel_createdBy}" for="createdBy" />
-                    <h:selectOneMenu id="createdBy" value="#{fournisseurController.selected.createdBy}" title="#{bundle.CreateFournisseurTitle_createdBy}" >
-                        <f:selectItems value="#{employeController.itemsAvailableSelectOne}"/>
-                    </h:selectOneMenu>
                     <h:outputLabel value="#{bundle.CreateFournisseurLabel_nom_fourni}" for="nom_fourni" />
                     <h:inputText id="nom_fourni" value="#{fournisseurController.selected.nom_fourni}" title="#{bundle.CreateFournisseurTitle_nom_fourni}" />
                     <h:outputLabel value="#{bundle.CreateFournisseurLabel_adresse_fourni}" for="adresse_fourni" />
@@ -33,17 +30,19 @@
                     <h:inputText id="ville_fourni" value="#{fournisseurController.selected.ville_fourni}" title="#{bundle.CreateFournisseurTitle_ville_fourni}" />
                     <h:outputLabel value="#{bundle.CreateFournisseurLabel_pays_fourni}" for="pays_fourni" />
                     <h:inputText id="pays_fourni" value="#{fournisseurController.selected.pays_fourni}" title="#{bundle.CreateFournisseurTitle_pays_fourni}" />
-                    <h:outputLabel value="#{bundle.CreateFournisseurLabel_id}" for="id" />
-                    <h:inputText id="id" value="#{fournisseurController.selected.id}" title="#{bundle.CreateFournisseurTitle_id}" />
+                     <h:outputLabel value="#{bundle.CreateFournisseurLabel_createdBy}" for="createdBy" />
+                    <h:selectOneMenu id="createdBy" value="#{fournisseurController.selected.createdBy}" title="#{bundle.CreateFournisseurTitle_createdBy}" >
+                        <f:selectItems value="#{employeController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
                 </h:panelGrid>
-                <br />
-                <h:commandLink action="#{fournisseurController.create}" value="#{bundle.CreateFournisseurSaveLink}" />
-                <br />
-                <br />
-                <h:commandLink action="#{fournisseurController.prepareList}" value="#{bundle.CreateFournisseurShowAllLink}" immediate="true"/>
-                <br />
-                <br />
-                <h:link outcome="/index" value="#{bundle.CreateFournisseurIndexLink}"/>
+                <br/>
+                <br/>
+                 <b:gridColumn span="4">
+                    <h:panelGrid columns="2">
+                        <h:commandLink class="btn btn-primary" action="#{fournisseurController.create}" value="#{bundle.CreateFournisseurSaveLink}" />
+                        <h:commandLink class="btn btn-success" action="#{fournisseurController.prepareList}" value="#{bundle.CreateFournisseurShowAllLink}" immediate="true"/>
+                    </h:panelGrid>
+                </b:gridColumn>
             </h:form>
         </ui:define>
     </ui:composition>

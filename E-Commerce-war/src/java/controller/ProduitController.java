@@ -46,12 +46,12 @@ public class ProduitController implements Serializable {
     public void setQte(Integer qte) {
         this.qte = qte;
     }
-    
-    public double somme(){
-        if(pu == null || qte == null) {
+
+    public double somme() {
+        if (pu == null || qte == null) {
             return 0;
         }
-        return pu*qte;
+        return pu * qte;
     }
 
     public ProduitController() {
@@ -60,6 +60,7 @@ public class ProduitController implements Serializable {
     public Produit getSelected() {
         if (current == null) {
             current = new Produit();
+
             selectedItemIndex = -1;
         }
         return current;
@@ -106,10 +107,10 @@ public class ProduitController implements Serializable {
     public String create() {
         try {
             getFacade().create(current);
-            JsfUtil.addSuccessMessage(ResourceBundle.getBundle("/Bundle2").getString("ProduitCreated"));
+            JsfUtil.addSuccessMessage(ResourceBundle.getBundle("/Bundle").getString("ProduitCreated"));
             return prepareCreate();
         } catch (Exception e) {
-            JsfUtil.addErrorMessage(e, ResourceBundle.getBundle("/Bundle2").getString("PersistenceErrorOccured"));
+            JsfUtil.addErrorMessage(e, ResourceBundle.getBundle("/Bundle").getString("PersistenceErrorOccured"));
             return null;
         }
     }
@@ -123,10 +124,10 @@ public class ProduitController implements Serializable {
     public String update() {
         try {
             getFacade().edit(current);
-            JsfUtil.addSuccessMessage(ResourceBundle.getBundle("/Bundle2").getString("ProduitUpdated"));
+            JsfUtil.addSuccessMessage(ResourceBundle.getBundle("/Bundle").getString("ProduitUpdated"));
             return "View";
         } catch (Exception e) {
-            JsfUtil.addErrorMessage(e, ResourceBundle.getBundle("/Bundle2").getString("PersistenceErrorOccured"));
+            JsfUtil.addErrorMessage(e, ResourceBundle.getBundle("/Bundle").getString("PersistenceErrorOccured"));
             return null;
         }
     }
@@ -156,9 +157,9 @@ public class ProduitController implements Serializable {
     private void performDestroy() {
         try {
             getFacade().remove(current);
-            JsfUtil.addSuccessMessage(ResourceBundle.getBundle("/Bundle2").getString("ProduitDeleted"));
+            JsfUtil.addSuccessMessage(ResourceBundle.getBundle("/Bundle").getString("ProduitDeleted"));
         } catch (Exception e) {
-            JsfUtil.addErrorMessage(e, ResourceBundle.getBundle("/Bundle2").getString("PersistenceErrorOccured"));
+            JsfUtil.addErrorMessage(e, ResourceBundle.getBundle("/Bundle").getString("PersistenceErrorOccured"));
         }
     }
 

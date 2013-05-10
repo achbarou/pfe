@@ -15,26 +15,25 @@
             </h:panelGroup>
             <h:form>
                 <h:panelGrid columns="2">
-                    <h:outputText value="#{bundle.ViewGroup_categorieLabel_createdBy}"/>
-                    <h:outputText value="#{group_categorieController.selected.createdBy}" title="#{bundle.ViewGroup_categorieTitle_createdBy}"/>
                     <h:outputText value="#{bundle.ViewGroup_categorieLabel_libelle_GroupCat}"/>
                     <h:outputText value="#{group_categorieController.selected.libelle_GroupCat}" title="#{bundle.ViewGroup_categorieTitle_libelle_GroupCat}"/>
-                    <h:outputText value="#{bundle.ViewGroup_categorieLabel_id}"/>
-                    <h:outputText value="#{group_categorieController.selected.id}" title="#{bundle.ViewGroup_categorieTitle_id}"/>
+                     <h:outputText value="#{bundle.ViewGroup_categorieLabel_id}"/>
+                    <h:outputText value="#{group_categorieController.selected.id}" title="#{bundle.ViewGroup_categorieTitle_id}"/> 
+                    <h:outputText value="Description :"/>
+                     <h:outputText value="#{group_categorieController.selected.description}" title="Description"/>
+                     <h:outputText value="Etat :"/>
+                     <h:outputText value="#{group_categorieController.selected.etat}" title="etat"/>
+                    <h:outputText value="#{bundle.ViewGroup_categorieLabel_createdBy}"/>
+                    <h:outputText value="#{group_categorieController.selected.createdBy}" title="description"/>
                 </h:panelGrid>
-                <br />
-                <h:commandLink action="#{group_categorieController.destroyAndView}" value="#{bundle.ViewGroup_categorieDestroyLink}"/>
-                <br />
-                <br />
-                <h:link outcome="Edit" value="#{bundle.ViewGroup_categorieEditLink}"/>
-                <br />
-                <h:commandLink action="#{group_categorieController.prepareCreate}" value="#{bundle.ViewGroup_categorieCreateLink}" />
-                <br />
-                <h:commandLink action="#{group_categorieController.prepareList}" value="#{bundle.ViewGroup_categorieShowAllLink}"/>
-                <br />
-                <br />
-                <h:link outcome="/index" value="#{bundle.ViewGroup_categorieIndexLink}"/>
-
+                 <div class="span4 offset2 btn-toolbar">
+                    <div class="btn-group">
+                        <h:commandLink class="btn btn-primary icon-plus-sign" action="#{group_categorieController.prepareCreate}" value=" Nouveau" />
+                        <h:link outcome="Edit" class="btn btn-warning icon-edit" value=" Edit"/>
+                        <h:commandLink class="btn btn-danger icon-remove" action="#{group_categorieController.destroyAndView}" value=" suprimmer"/>
+                        <h:commandLink class="btn btn-info icon-eye-open" action="#{group_categorieController.prepareList}" value=" List"/>
+                    </div>
+                </div>
             </h:form>
         </ui:define>
     </ui:composition>

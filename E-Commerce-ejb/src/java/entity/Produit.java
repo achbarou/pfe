@@ -26,10 +26,13 @@ public class Produit implements Serializable {
     private String photo ;
     private String Nouveaute_prod ;
     private String solde_prod ;
-    private Double prix ;
     private Double prix_livraison ;
     private String unite ;
     private Double unite_prix ;
+    private Boolean etat ;
+    private Boolean disponibilité ;
+    private Double quantite ;
+    
     @ManyToOne
     private Employe createdBy ;
     @ManyToOne
@@ -94,14 +97,29 @@ public class Produit implements Serializable {
         this.solde_prod = solde_prod;
     }
 
-    public Double getPrix() {
-        return prix;
+    public Boolean getEtat() {
+        return etat;
     }
 
-    public void setPrix(Double prix) {
-        this.prix = prix;
+    public void setEtat(Boolean etat) {
+        this.etat = etat;
     }
 
+    public Boolean getDisponibilité() {
+        return disponibilité;
+    }
+
+    public void setDisponibilité(Boolean disponibilité) {
+        this.disponibilité = disponibilité;
+    }
+
+    public Double getQuantite() {
+        return quantite;
+    }
+
+    public void setQuantite(Double quantite) {
+        this.quantite = quantite;
+    }
     public Double getPrix_livraison() {
         return prix_livraison;
     }
@@ -164,7 +182,7 @@ public class Produit implements Serializable {
 
     @Override
     public String toString() {
-        return "entity.Produit[ id=" + id + " ]";
+        return Libelle;
     }
     
 }

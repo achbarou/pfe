@@ -22,6 +22,24 @@ public class Group_categorie implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     private String libelle_GroupCat;
+    private Boolean etat ;
+    private String description ;
+
+    public Boolean getEtat() {
+        return etat;
+    }
+
+    public void setEtat(Boolean etat) {
+        this.etat = etat;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
     @ManyToOne
     private Employe createdBy ;
     
@@ -71,7 +89,7 @@ public class Group_categorie implements Serializable {
 
     @Override
     public String toString() {
-        return "entity.Group_categorie[ id=" + id + " ]";
+        return libelle_GroupCat;
     }
     
 }

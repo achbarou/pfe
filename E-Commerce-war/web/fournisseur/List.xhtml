@@ -19,12 +19,12 @@
                     <h:outputText value="#{fournisseurController.pagination.pageFirstItem + 1}..#{fournisseurController.pagination.pageLastItem + 1}/#{fournisseurController.pagination.itemsCount}"/>&nbsp;
                     <h:commandLink action="#{fournisseurController.previous}" value="#{bundle.Previous} #{fournisseurController.pagination.pageSize}" rendered="#{fournisseurController.pagination.hasPreviousPage}"/>&nbsp;
                     <h:commandLink action="#{fournisseurController.next}" value="#{bundle.Next} #{fournisseurController.pagination.pageSize}" rendered="#{fournisseurController.pagination.hasNextPage}"/>&nbsp;
-                    <h:dataTable value="#{fournisseurController.items}" var="item" border="0" cellpadding="2" cellspacing="0" rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" style="border:solid 1px">
-                        <h:column>
+                    <h:dataTable value="#{fournisseurController.items}" var="item" border="0" cellpadding="2" cellspacing="0" rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" style="width: 100%">
+                         <h:column>
                             <f:facet name="header">
-                                <h:outputText value="#{bundle.ListFournisseurTitle_createdBy}"/>
+                                <h:outputText value="#{bundle.ListFournisseurTitle_id}"/>
                             </f:facet>
-                            <h:outputText value="#{item.createdBy}"/>
+                            <h:outputText value="#{item.id}"/>
                         </h:column>
                         <h:column>
                             <f:facet name="header">
@@ -68,29 +68,32 @@
                             </f:facet>
                             <h:outputText value="#{item.pays_fourni}"/>
                         </h:column>
-                        <h:column>
+                         <h:column>
                             <f:facet name="header">
-                                <h:outputText value="#{bundle.ListFournisseurTitle_id}"/>
+                                <h:outputText value="#{bundle.ListFournisseurTitle_createdBy}"/>
                             </f:facet>
-                            <h:outputText value="#{item.id}"/>
+                            <h:outputText value="#{item.createdBy}"/>
                         </h:column>
                         <h:column>
                             <f:facet name="header">
-                                <h:outputText value="&nbsp;"/>
+                                <h:outputText value="Action"/>
                             </f:facet>
-                            <h:commandLink action="#{fournisseurController.prepareView}" value="#{bundle.ListFournisseurViewLink}"/>
-                            <h:outputText value=" "/>
-                            <h:commandLink action="#{fournisseurController.prepareEdit}" value="#{bundle.ListFournisseurEditLink}"/>
-                            <h:outputText value=" "/>
-                            <h:commandLink action="#{fournisseurController.destroy}" value="#{bundle.ListFournisseurDestroyLink}"/>
+                            <h:commandLink action="#{fournisseurController.prepareView}">
+                                <font size="+1" title="View"><i class="icon-eye-open" style="color: black" ></i></font>
+                            </h:commandLink>
+                            <h:commandLink action="#{fournisseurController.prepareEdit}" >
+                                <font size="+1" title="Edit"><i class="icon-edit" style="color: Orange" ></i></font>
+                            </h:commandLink>
+                            <h:commandLink action="#{fournisseurController.destroy}">
+                                <font size="+1" title="Remove"><i class="icon-remove" style="color: red" ></i></font>
+                            </h:commandLink>
                         </h:column>
                     </h:dataTable>
+                    <br/>
                 </h:panelGroup>
-                <br />
-                <h:commandLink action="#{fournisseurController.prepareCreate}" value="#{bundle.ListFournisseurCreateLink}"/>
-                <br />
-                <br />
-                <h:link outcome="/index" value="#{bundle.ListFournisseurIndexLink}"/>
+                 <h:commandLink class="btn btn-primary" action="#{fournisseurController.prepareCreate}">
+                    <i class="icon-white icon-plus-sign"></i>  #{bundle.ListFournisseurCreateLink}
+                </h:commandLink>
             </h:form>
         </ui:define>
     </ui:composition>

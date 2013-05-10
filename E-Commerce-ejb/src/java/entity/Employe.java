@@ -160,7 +160,7 @@ public class Employe implements Serializable {
 
     @Override
     public String toString() {
-        return "entity.Employe[ id=" + id + " ]";
+        return nom +""+Prenom;
     }
     
 }

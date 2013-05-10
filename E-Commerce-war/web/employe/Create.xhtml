@@ -3,7 +3,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:ui="http://java.sun.com/jsf/facelets"
       xmlns:h="http://java.sun.com/jsf/html"
-      xmlns:f="http://java.sun.com/jsf/core">
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:b="http://richfaces.org/sandbox/bootstrap">
 
     <ui:composition template="/template.xhtml">
         <ui:define name="title">
@@ -36,18 +37,15 @@
                     <h:outputLabel value="#{bundle.CreateEmployeLabel_login}" for="login" />
                     <h:inputText id="login" value="#{employeController.selected.login}" title="#{bundle.CreateEmployeTitle_login}" />
                     <h:outputLabel value="#{bundle.CreateEmployeLabel_password}" for="password" />
-                    <h:inputText id="password" value="#{employeController.selected.password}" title="#{bundle.CreateEmployeTitle_password}" />
-                    <h:outputLabel value="#{bundle.CreateEmployeLabel_id}" for="id" />
-                    <h:inputText id="id" value="#{employeController.selected.id}" title="#{bundle.CreateEmployeTitle_id}" />
+                    <h:inputSecret id="password" value="#{employeController.selected.password}" title="#{bundle.CreateEmployeTitle_password}" />
                 </h:panelGrid>
                 <br />
-                <h:commandLink action="#{employeController.create}" value="#{bundle.CreateEmployeSaveLink}" />
-                <br />
-                <br />
-                <h:commandLink action="#{employeController.prepareList}" value="#{bundle.CreateEmployeShowAllLink}" immediate="true"/>
-                <br />
-                <br />
-                <h:link outcome="/index" value="#{bundle.CreateEmployeIndexLink}"/>
+                <b:gridColumn span="4">
+                    <h:panelGrid columns="2">
+                        <h:commandLink class="btn btn-primary" action="#{employeController.create}" value="#{bundle.CreateEmployeSaveLink}" />
+                        <h:commandLink class="btn btn-success" action="#{employeController.prepareList}" value="#{bundle.CreateEmployeShowAllLink}" immediate="true" />
+                    </h:panelGrid>
+                </b:gridColumn>
             </h:form>
         </ui:define>
     </ui:composition>

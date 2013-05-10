@@ -10,9 +10,10 @@
 
     <h:head>
         <title><ui:insert name="title">Default Title</ui:insert></title>
-<h:outputStylesheet name="css/jsfcrud.css"/>
+        <h:outputStylesheet name="css/jsfcrud.css"/>
         <script src="#{request.contextPath}/resources/js/jquery.dataTables.js" ></script>
-        <link rel="stylesheet" href="#{request.contextPath}/resources/css/DT_bootstrap.css" /> 
+        <link rel="stylesheet" href="#{request.contextPath}/resources/css/DT_bootstrap.css" />
+        <link rel="stylesheet" href="#{request.contextPath}/resources/css/style.css" />
         <script src="#{request.contextPath}/resources/js/DT_bootstrap.js" ></script>   
         <link rel="shortcut icon" type="image/x-icon" href="#{request.contextPath}/resources/images/favicon.ico" />
     </h:head>
@@ -70,14 +71,24 @@
         <br/>
         <br/>
         <br/>
+        <!--div class="toolbarBox span10" style="width: 83%;">
+                   
+           
+            <ul class="cc_button">
+                <li>
+                <a  class="toolbar_btn" title="Créer" href="">
+                 <img style="float: left;" src="#{request.contextPath}/faces/resources/images/icon-new.png"/>
+                </a>
+                </li>
+            </ul>
+        </div-->
         <b:heroUnit styleClass="span10" style="padding-top: 10px;">
             <img style="float: left;" src="#{request.contextPath}/faces/resources/images/logo.png" width="90px"/>
-             <div style="padding-top: 20px">
-                <p style=" font-size: 20pt; border-bottom: rgb(58,135,173) solid 1px;">
-                    <ui:insert name="title">Default Title</ui:insert>
-                    <br/>
-                </p>
-
+            <div style="padding-top: 20px">
+                <h3>
+                    <ui:insert name="title" style="margin-top: 20px ;">Default Title</ui:insert>
+                </h3>
+                <hr></hr>
                 <p>
                     <ui:insert name="body" >Default Body</ui:insert>
                 </p>

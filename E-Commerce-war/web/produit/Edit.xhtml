@@ -3,7 +3,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:ui="http://java.sun.com/jsf/facelets"
       xmlns:h="http://java.sun.com/jsf/html"
-      xmlns:f="http://java.sun.com/jsf/core">
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:b="http://richfaces.org/sandbox/bootstrap">
 
     <ui:composition template="/template.xhtml">
         <ui:define name="title">
@@ -15,30 +16,26 @@
             </h:panelGroup>
             <h:form>
                 <h:panelGrid columns="2">
-                    <h:outputLabel value="#{bundle.EditProduitLabel_fournisseur}" for="fournisseur" />
-                    <h:selectOneMenu id="fournisseur" value="#{produitController.selected.fournisseur}" title="#{bundle.EditProduitTitle_fournisseur}" >
-                        <f:selectItems value="#{fournisseurController.itemsAvailableSelectOne}"/>
-                    </h:selectOneMenu>
-                    <h:outputLabel value="#{bundle.EditProduitLabel_id}" for="id" />
-                    <h:inputText id="id" value="#{produitController.selected.id}" title="#{bundle.EditProduitTitle_id}" />
-                    <h:outputLabel value="#{bundle.EditProduitLabel_libelle}" for="libelle" />
-                    <h:inputText id="libelle" value="#{produitController.selected.libelle}" title="#{bundle.EditProduitTitle_libelle}" />
+                    <h:outputLabel value="Nom :" for="libelle" />
+                    <h:inputText id="libelle" value="#{produitController.selected.libelle}" title="Nom" />
                     <h:outputLabel value="#{bundle.EditProduitLabel_description}" for="description" />
-                    <h:inputText id="description" value="#{produitController.selected.description}" title="#{bundle.EditProduitTitle_description}" />
+                    <h:inputTextarea id="description" value="#{produitController.selected.description}" title="#{bundle.EditProduitTitle_description}" />
                     <h:outputLabel value="#{bundle.EditProduitLabel_photo}" for="photo" />
                     <h:inputText id="photo" value="#{produitController.selected.photo}" title="#{bundle.EditProduitTitle_photo}" />
                     <h:outputLabel value="#{bundle.EditProduitLabel_nouveaute_prod}" for="nouveaute_prod" />
                     <h:inputText id="nouveaute_prod" value="#{produitController.selected.nouveaute_prod}" title="#{bundle.EditProduitTitle_nouveaute_prod}" />
                     <h:outputLabel value="#{bundle.EditProduitLabel_solde_prod}" for="solde_prod" />
                     <h:inputText id="solde_prod" value="#{produitController.selected.solde_prod}" title="#{bundle.EditProduitTitle_solde_prod}" />
-                    <h:outputLabel value="#{bundle.EditProduitLabel_prix}" for="prix" />
-                    <h:inputText id="prix" value="#{produitController.selected.prix}" title="#{bundle.EditProduitTitle_prix}" />
                     <h:outputLabel value="#{bundle.EditProduitLabel_prix_livraison}" for="prix_livraison" />
                     <h:inputText id="prix_livraison" value="#{produitController.selected.prix_livraison}" title="#{bundle.EditProduitTitle_prix_livraison}" />
                     <h:outputLabel value="#{bundle.EditProduitLabel_unite}" for="unite" />
                     <h:inputText id="unite" value="#{produitController.selected.unite}" title="#{bundle.EditProduitTitle_unite}" />
                     <h:outputLabel value="#{bundle.EditProduitLabel_unite_prix}" for="unite_prix" />
                     <h:inputText id="unite_prix" value="#{produitController.selected.unite_prix}" title="#{bundle.EditProduitTitle_unite_prix}" />
+                    <h:outputLabel value="#{bundle.EditProduitLabel_fournisseur}" for="fournisseur" />
+                    <h:selectOneMenu id="fournisseur" value="#{produitController.selected.fournisseur}" title="#{bundle.EditProduitTitle_fournisseur}" >
+                        <f:selectItems value="#{fournisseurController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
                     <h:outputLabel value="#{bundle.EditProduitLabel_createdBy}" for="createdBy" />
                     <h:selectOneMenu id="createdBy" value="#{produitController.selected.createdBy}" title="#{bundle.EditProduitTitle_createdBy}" >
                         <f:selectItems value="#{employeController.itemsAvailableSelectOne}"/>
@@ -48,15 +45,14 @@
                         <f:selectItems value="#{categorieController.itemsAvailableSelectOne}"/>
                     </h:selectOneMenu>
                 </h:panelGrid>
-                <h:commandLink action="#{produitController.update}" value="#{bundle.EditProduitSaveLink}"/>
-                <br />
-                <br />
-                <h:link outcome="View" value="#{bundle.EditProduitViewLink}"/>
-                <br />
-                <h:commandLink action="#{produitController.prepareList}" value="#{bundle.EditProduitShowAllLink}" immediate="true"/>
-                <br />
-                <br />
-                <h:link outcome="/index" value="#{bundle.EditProduitIndexLink}" />
+                <br/>
+                <br/>
+                <b:gridColumn span="4">
+                    <h:panelGrid columns="2"> 
+                        <h:commandLink class="btn btn-primary" action="#{produitController.update}" value="#{bundle.EditProduitSaveLink}"/>
+                        <h:commandLink class="btn btn-success" action="#{produitController.prepareList}" value="#{bundle.EditProduitShowAllLink}" immediate="true"/>
+                    </h:panelGrid>
+                </b:gridColumn>
             </h:form>
         </ui:define>
     </ui:composition>

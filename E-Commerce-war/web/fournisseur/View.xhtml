@@ -15,8 +15,8 @@
             </h:panelGroup>
             <h:form>
                 <h:panelGrid columns="2">
-                    <h:outputText value="#{bundle.ViewFournisseurLabel_createdBy}"/>
-                    <h:outputText value="#{fournisseurController.selected.createdBy}" title="#{bundle.ViewFournisseurTitle_createdBy}"/>
+                     <h:outputText value="#{bundle.ViewFournisseurLabel_id}"/>
+                    <h:outputText value="#{fournisseurController.selected.id}" title="#{bundle.ViewFournisseurTitle_id}"/>
                     <h:outputText value="#{bundle.ViewFournisseurLabel_nom_fourni}"/>
                     <h:outputText value="#{fournisseurController.selected.nom_fourni}" title="#{bundle.ViewFournisseurTitle_nom_fourni}"/>
                     <h:outputText value="#{bundle.ViewFournisseurLabel_adresse_fourni}"/>
@@ -31,22 +31,17 @@
                     <h:outputText value="#{fournisseurController.selected.ville_fourni}" title="#{bundle.ViewFournisseurTitle_ville_fourni}"/>
                     <h:outputText value="#{bundle.ViewFournisseurLabel_pays_fourni}"/>
                     <h:outputText value="#{fournisseurController.selected.pays_fourni}" title="#{bundle.ViewFournisseurTitle_pays_fourni}"/>
-                    <h:outputText value="#{bundle.ViewFournisseurLabel_id}"/>
-                    <h:outputText value="#{fournisseurController.selected.id}" title="#{bundle.ViewFournisseurTitle_id}"/>
+                    <h:outputText value="#{bundle.ViewFournisseurLabel_createdBy}"/>
+                    <h:outputText value="#{fournisseurController.selected.createdBy}" title="#{bundle.ViewFournisseurTitle_createdBy}"/> 
                 </h:panelGrid>
-                <br />
-                <h:commandLink action="#{fournisseurController.destroyAndView}" value="#{bundle.ViewFournisseurDestroyLink}"/>
-                <br />
-                <br />
-                <h:link outcome="Edit" value="#{bundle.ViewFournisseurEditLink}"/>
-                <br />
-                <h:commandLink action="#{fournisseurController.prepareCreate}" value="#{bundle.ViewFournisseurCreateLink}" />
-                <br />
-                <h:commandLink action="#{fournisseurController.prepareList}" value="#{bundle.ViewFournisseurShowAllLink}"/>
-                <br />
-                <br />
-                <h:link outcome="/index" value="#{bundle.ViewFournisseurIndexLink}"/>
-
+                 <div class="span4 offset2 btn-toolbar">
+                    <div class="btn-group">
+                        <h:commandLink class="btn btn-primary icon-plus-sign" action="#{fournisseurController.prepareCreate}" value=" Nouveau" />
+                        <h:link outcome="Edit" class="btn btn-warning icon-edit" value=" Edit"/>
+                        <h:commandLink class="btn btn-danger icon-remove" action="#{fournisseurController.destroyAndView}" value=" suprimmer"/>
+                        <h:commandLink class="btn btn-info icon-eye-open" action="#{fournisseurController.prepareList}" value=" List"/>
+                    </div>
+                </div>
             </h:form>
         </ui:define>
     </ui:composition>

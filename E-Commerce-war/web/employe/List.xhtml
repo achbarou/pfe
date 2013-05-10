@@ -19,7 +19,7 @@
                     <h:outputText value="#{employeController.pagination.pageFirstItem + 1}..#{employeController.pagination.pageLastItem + 1}/#{employeController.pagination.itemsCount}"/>&nbsp;
                     <h:commandLink action="#{employeController.previous}" value="#{bundle.Previous} #{employeController.pagination.pageSize}" rendered="#{employeController.pagination.hasPreviousPage}"/>&nbsp;
                     <h:commandLink action="#{employeController.next}" value="#{bundle.Next} #{employeController.pagination.pageSize}" rendered="#{employeController.pagination.hasNextPage}"/>&nbsp;
-                    <h:dataTable value="#{employeController.items}" var="item" border="0" cellpadding="2" cellspacing="0" rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" style="border:solid 1px">
+                    <h:dataTable value="#{employeController.items}" var="item" border="0" cellpadding="2" cellspacing="0" rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" style="width: 100%">
                         <h:column>
                             <f:facet name="header">
                                 <h:outputText value="#{bundle.ListEmployeTitle_nom}"/>
@@ -94,21 +94,24 @@
                         </h:column>
                         <h:column>
                             <f:facet name="header">
-                                <h:outputText value="&nbsp;"/>
+                                <h:outputText value="Action"/>
                             </f:facet>
-                            <h:commandLink action="#{employeController.prepareView}" value="#{bundle.ListEmployeViewLink}"/>
-                            <h:outputText value=" "/>
-                            <h:commandLink action="#{employeController.prepareEdit}" value="#{bundle.ListEmployeEditLink}"/>
-                            <h:outputText value=" "/>
-                            <h:commandLink action="#{employeController.destroy}" value="#{bundle.ListEmployeDestroyLink}"/>
+                            <h:commandLink action="#{employeController.prepareView}">
+                                <font size="+1" title="View"><i class="icon-eye-open" style="color: black" ></i></font>
+                            </h:commandLink>
+                            <h:commandLink action="#{employeController.prepareEdit}" >
+                                <font size="+1" title="Edit"><i class="icon-edit" style="color: Orange" ></i></font>
+                            </h:commandLink>
+                            <h:commandLink action="#{employeController.destroy}">
+                                <font size="+1" title="Remove"><i class="icon-remove" style="color: red" ></i></font>
+                            </h:commandLink>
                         </h:column>
                     </h:dataTable>
                 </h:panelGroup>
-                <br />
-                <h:commandLink action="#{employeController.prepareCreate}" value="#{bundle.ListEmployeCreateLink}"/>
-                <br />
-                <br />
-                <h:link outcome="/index" value="#{bundle.ListEmployeIndexLink}"/>
+                <br/>
+                <h:commandLink class="btn btn-primary" action="#{employeController.prepareCreate}">
+                    <i class="icon-white icon-plus-sign"></i> #{bundle.ListEmployeCreateLink}
+                </h:commandLink>
             </h:form>
         </ui:define>
     </ui:composition>

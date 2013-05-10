@@ -3,7 +3,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:ui="http://java.sun.com/jsf/facelets"
       xmlns:h="http://java.sun.com/jsf/html"
-      xmlns:f="http://java.sun.com/jsf/core">
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:b="http://richfaces.org/sandbox/bootstrap">
 
     <ui:composition template="/template.xhtml">
         <ui:define name="title">
@@ -15,10 +16,6 @@
             </h:panelGroup>
             <h:form>
                 <h:panelGrid columns="2">
-                    <h:outputLabel value="#{bundle.EditFournisseurLabel_createdBy}" for="createdBy" />
-                    <h:selectOneMenu id="createdBy" value="#{fournisseurController.selected.createdBy}" title="#{bundle.EditFournisseurTitle_createdBy}" >
-                        <f:selectItems value="#{employeController.itemsAvailableSelectOne}"/>
-                    </h:selectOneMenu>
                     <h:outputLabel value="#{bundle.EditFournisseurLabel_nom_fourni}" for="nom_fourni" />
                     <h:inputText id="nom_fourni" value="#{fournisseurController.selected.nom_fourni}" title="#{bundle.EditFournisseurTitle_nom_fourni}" />
                     <h:outputLabel value="#{bundle.EditFournisseurLabel_adresse_fourni}" for="adresse_fourni" />
@@ -33,18 +30,17 @@
                     <h:inputText id="ville_fourni" value="#{fournisseurController.selected.ville_fourni}" title="#{bundle.EditFournisseurTitle_ville_fourni}" />
                     <h:outputLabel value="#{bundle.EditFournisseurLabel_pays_fourni}" for="pays_fourni" />
                     <h:inputText id="pays_fourni" value="#{fournisseurController.selected.pays_fourni}" title="#{bundle.EditFournisseurTitle_pays_fourni}" />
-                    <h:outputLabel value="#{bundle.EditFournisseurLabel_id}" for="id" />
-                    <h:inputText id="id" value="#{fournisseurController.selected.id}" title="#{bundle.EditFournisseurTitle_id}" />
+                    <h:outputLabel value="#{bundle.EditFournisseurLabel_createdBy}" for="createdBy" />
+                    <h:selectOneMenu id="createdBy" value="#{fournisseurController.selected.createdBy}" title="#{bundle.EditFournisseurTitle_createdBy}" >
+                        <f:selectItems value="#{employeController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
                 </h:panelGrid>
-                <h:commandLink action="#{fournisseurController.update}" value="#{bundle.EditFournisseurSaveLink}"/>
-                <br />
-                <br />
-                <h:link outcome="View" value="#{bundle.EditFournisseurViewLink}"/>
-                <br />
-                <h:commandLink action="#{fournisseurController.prepareList}" value="#{bundle.EditFournisseurShowAllLink}" immediate="true"/>
-                <br />
-                <br />
-                <h:link outcome="/index" value="#{bundle.EditFournisseurIndexLink}" />
+                <b:gridColumn span="4">
+                    <h:panelGrid columns="2"> 
+                        <h:commandLink class="btn btn-primary" action="#{fournisseurController.update}" value="#{bundle.EditFournisseurSaveLink}" />
+                        <h:commandLink class="btn btn-success" action="#{fournisseurController.prepareList}" value="#{bundle.EditFournisseurShowAllLink}" immediate="true"/>
+                    </h:panelGrid>
+                </b:gridColumn>
             </h:form>
         </ui:define>
     </ui:composition>

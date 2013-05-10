@@ -15,28 +15,27 @@
             </h:panelGroup>
             <h:form>
                 <h:panelGrid columns="2">
-                    <h:outputText value="#{bundle.ViewCategorieLabel_super_cat}"/>
-                    <h:outputText value="#{categorieController.selected.super_cat}" title="#{bundle.ViewCategorieTitle_super_cat}"/>
-                    <h:outputText value="#{bundle.ViewCategorieLabel_createdBye}"/>
-                    <h:outputText value="#{categorieController.selected.createdBye}" title="#{bundle.ViewCategorieTitle_createdBye}"/>
-                    <h:outputText value="#{bundle.ViewCategorieLabel_libelle_cat}"/>
-                    <h:outputText value="#{categorieController.selected.libelle_cat}" title="#{bundle.ViewCategorieTitle_libelle_cat}"/>
                     <h:outputText value="#{bundle.ViewCategorieLabel_id}"/>
                     <h:outputText value="#{categorieController.selected.id}" title="#{bundle.ViewCategorieTitle_id}"/>
+                    <h:outputText value="#{bundle.ViewCategorieLabel_libelle_cat}"/>
+                    <h:outputText value="#{categorieController.selected.libelle_cat}" title="#{bundle.ViewCategorieTitle_libelle_cat}"/>
+                    <h:outputText value="#{bundle.ViewCategorieLabel_super_cat}"/>
+                    <h:outputText value="#{categorieController.selected.super_cat}" title="#{bundle.ViewCategorieTitle_super_cat}"/>
+                    <h:outputText value="Description :"/>
+                    <h:outputText value="#{categorieController.selected.description}" title="description"/>
+                    <h:outputText value="Etat "/>
+                    <h:outputText value="#{categorieController.selected.etat}" title="etat"/>
+                    <h:outputText value="#{bundle.ViewCategorieLabel_createdBye}"/>
+                    <h:outputText value="#{categorieController.selected.createdBye}" title="#{bundle.ViewCategorieTitle_createdBye}"/> 
                 </h:panelGrid>
-                <br />
-                <h:commandLink action="#{categorieController.destroyAndView}" value="#{bundle.ViewCategorieDestroyLink}"/>
-                <br />
-                <br />
-                <h:link outcome="Edit" value="#{bundle.ViewCategorieEditLink}"/>
-                <br />
-                <h:commandLink action="#{categorieController.prepareCreate}" value="#{bundle.ViewCategorieCreateLink}" />
-                <br />
-                <h:commandLink action="#{categorieController.prepareList}" value="#{bundle.ViewCategorieShowAllLink}"/>
-                <br />
-                <br />
-                <h:link outcome="/index" value="#{bundle.ViewCategorieIndexLink}"/>
-
+                 <div class="span4 offset2 btn-toolbar">
+                    <div class="btn-group">
+                        <h:commandLink class="btn btn-primary icon-plus-sign" action="#{categorieController.prepareCreate}" value=" Nouveau" />
+                        <h:link outcome="Edit" class="btn btn-warning icon-edit" value=" Edit"/>
+                        <h:commandLink class="btn btn-danger icon-remove" action="#{produitController.destroyAndView}" value=" suprimmer"/>
+                        <h:commandLink class="btn btn-info icon-eye-open" action="#{categorieController.prepareList}" value=" List"/>
+                    </div>
+                </div>
             </h:form>
         </ui:define>
     </ui:composition>
