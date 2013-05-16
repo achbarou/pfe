@@ -1,13 +1,15 @@
 package controller;
 
-import java.io.IOException;
-import java.io.OutputStream;
+import java.io.File;
 import java.io.Serializable;
-import java.util.ArrayList;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
+import javax.faces.context.FacesContext;
 import org.richfaces.event.FileUploadEvent;
-import org.richfaces.model.UploadedFile;
 
 /**
  * @author Ilya Shaikovsky
@@ -17,45 +19,27 @@ import org.richfaces.model.UploadedFile;
 @SessionScoped
 public class fileUploadBean implements Serializable {
 
-    private ArrayList<UploadedImage> files = new ArrayList<UploadedImage>();
+    //private String destination = FacesContext.getCurrentInstance().getExternalContext().getRealPath("/resources/images/");
+    public void upload(FileUploadEvent event) {
+        try {
+            // String targetFolder ="faces/resources/images/";
+            String destination = FacesContext.getCurrentInstance().getExternalContext().getRealPath("/../../web/resources/images");
+            //destination += "../../web/resources/images";
+            InputStream inputStream = event.getUploadedFile().getInputStream();
+            System.out.println("folder: " + destination);
+            OutputStream out = new FileOutputStream(new File(destination, event.getUploadedFile().getName()));
+            int read = 0;
+            byte[] bytes = new byte[1024];
 
-    public void paint(OutputStream stream, Object object) throws IOException {
-        stream.write(getFiles().get((Integer) object).getData());
-        stream.close();
-    }
-
-    public void listener(FileUploadEvent event) throws Exception {
-        UploadedFile item = event.getUploadedFile();
-        UploadedImage file = new UploadedImage();
-        file.setLength(item.getData().length);
-        file.setName(item.getName());
-        file.setData(item.getData());
-        //System.out.println(item.getAbsolutePath());
-        files.add(file);
-    }
-
-    public String clearUploadData() {
-        files.clear();
-        return null;
-    }
-
-    public int getSize() {
-        if (getFiles().size() > 0) {
-            return getFiles().size();
-        } else {
-            return 0;
+            while ((read = inputStream.read(bytes)) != -1) {
+                out.write(bytes, 0, read);
+            }
+            inputStream.close();
+            out.flush();
+            out.close();
+        } catch (IOException e) {
+            e.printStackTrace();
         }
-    }
 
-    public long getTimeStamp() {
-        return System.currentTimeMillis();
-    }
-
-    public ArrayList<UploadedImage> getFiles() {
-        return files;
-    }
-
-    public void setFiles(ArrayList<UploadedImage> files) {
-        this.files = files;
     }
 }

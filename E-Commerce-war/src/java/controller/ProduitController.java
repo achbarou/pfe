@@ -3,7 +3,14 @@ package controller;
 import controller.util.JsfUtil;
 import controller.util.PaginationHelper;
 import entity.Produit;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
 import java.io.Serializable;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 import java.util.ResourceBundle;
 import javax.ejb.EJB;
@@ -16,6 +23,7 @@ import javax.faces.convert.FacesConverter;
 import javax.faces.model.DataModel;
 import javax.faces.model.ListDataModel;
 import javax.faces.model.SelectItem;
+import org.richfaces.event.FileUploadEvent;
 import session.ProduitFacade;
 
 @ManagedBean(name = "produitController")
@@ -28,31 +36,9 @@ public class ProduitController implements Serializable {
     private session.ProduitFacade ejbFacade;
     private PaginationHelper pagination;
     private int selectedItemIndex;
-    private Double pu;
-    private Integer qte;
+    private String image ;
 
-    public Double getPu() {
-        return pu;
-    }
 
-    public void setPu(Double pu) {
-        this.pu = pu;
-    }
-
-    public Integer getQte() {
-        return qte;
-    }
-
-    public void setQte(Integer qte) {
-        this.qte = qte;
-    }
-
-    public double somme() {
-        if (pu == null || qte == null) {
-            return 0;
-        }
-        return pu * qte;
-    }
 
     public ProduitController() {
     }
@@ -64,6 +50,31 @@ public class ProduitController implements Serializable {
             selectedItemIndex = -1;
         }
         return current;
+    }
+    public void upload(FileUploadEvent event) {
+        try {
+            // String targetFolder ="faces/resources/images/";
+            String destination = FacesContext.getCurrentInstance().getExternalContext().getRealPath("/../../web/resources/images");
+            //destination += "../../web/resources/images";
+            InputStream inputStream = event.getUploadedFile().getInputStream();
+            System.out.println("folder: " + destination);
+            String name = new SimpleDateFormat("yyyyMMdd").format(new Date());
+            name += (int)(Math.random()*100);
+            OutputStream out = new FileOutputStream(new File(destination, name+event.getUploadedFile().getName()));
+            image = name+event.getUploadedFile().getName();
+            int read = 0;
+            byte[] bytes = new byte[1024];
+
+            while ((read = inputStream.read(bytes)) != -1) {
+                out.write(bytes, 0, read);
+            }
+            inputStream.close();
+            out.flush();
+            out.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
     }
 
     private ProduitFacade getFacade() {
@@ -106,6 +117,8 @@ public class ProduitController implements Serializable {
 
     public String create() {
         try {
+            
+            current.setPhoto(image);
             getFacade().create(current);
             JsfUtil.addSuccessMessage(ResourceBundle.getBundle("/Bundle").getString("ProduitCreated"));
             return prepareCreate();

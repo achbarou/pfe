@@ -32,6 +32,17 @@ public class Produit implements Serializable {
     private Boolean etat ;
     private Boolean disponibilité ;
     private Double quantite ;
+    private Double poids ;
+   // private String couleurs ; 
+
+    public Double getPoids() {
+        return poids;
+    }
+
+    public void setPoids(Double poids) {
+        this.poids = poids;
+    }
+    
     
     @ManyToOne
     private Employe createdBy ;

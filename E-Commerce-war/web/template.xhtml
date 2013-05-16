@@ -28,6 +28,11 @@
         a:hover{
             color: #ffffff !important;
         }
+        h1, h2, h3, h4 {
+            
+            color: #808080;
+            font-family: Arial,Arial,Century gothic,Tahoma,sans-serif;
+        }
     </style>
     <h:body style="margin-left: 60px;">
         <h:form>
@@ -48,18 +53,42 @@
                                 <li class="dropdown #{view.viewId == '/categorie/List.xhtml' || view.viewId == '/produit/List.xhtml' || view.viewId == '/employe/List.xhtml' || view.viewId == '/fournisseur/List.xhtml' || view.viewId == '/group_categorie/List.xhtml'? 'active' : ''}">
                                     <a class="dropdown-toggle" data-toggle="dropdown" href="#" style="font-size: 12pt; font-weight: bold;width: auto;">Catalogue</a>
                                     <ul class="dropdown-menu">
-                                        <li><h:link style="font-size: 13pt; color: #000000;" outcome="/produit/List" value="Produits"/></li>
-                                        <li><h:link style="font-size: 13pt; color: #000000;" outcome="/categorie/List" value="Categories"/></li>
-                                        <li><h:link style="font-size: 13pt; color: #000000;" outcome="/fournisseur/List" value="Frournisseurs"/></li>
-                                        <li><h:link style="font-size: 13pt; color: #000000;" outcome="/group_categorie/List" value="Groupe De Categories"/></li>
-                                        <li><h:link style="font-size: 13pt; color: #000000;" outcome="/employe/List" value="Employes"/></li>
+                                        <li><h:link style="font-size: 13pt; color: #000000;" outcome="/produit/#{produitController.prepareList()}.xhtml" value="Produits"/></li>
+                                        <li><h:link style="font-size: 13pt; color: #000000;" outcome="/categorie/#{categorieController.prepareList()}.xhtml" value="Categories"/></li>
+                                        <li><h:link style="font-size: 13pt; color: #000000;" outcome="/fournisseur/#{fournisseurController.prepareList()}.xhtml" value="Frournisseurs"/></li>
+                                        <li><h:link style="font-size: 13pt; color: #000000;" outcome="/group_categorie/#{group_categorieController.prepareList()}.xhtml" value="Groupe De Categories"/></li>
+                                    </ul>
+                                </li>
+                                <li class="dropdown">
+                                    <a class="dropdown-toggle" data-toggle="dropdown" href="#" style="font-size: 12pt; font-weight: bold;width: auto;">Commandes</a>
+                                    <ul class="dropdown-menu">
+                                        <li><h:link style="font-size: 13pt; color: #000000;" outcome="/produit/List" value="Commandes"/></li>
+                                        <li><h:link style="font-size: 13pt; color: #000000;" outcome="/produit/List" value="Factures"/></li>
+                                        <li><h:link style="font-size: 13pt; color: #000000;" outcome="/produit/List" value="Bon livraison"/></li> 
+                                        <li><h:link style="font-size: 13pt; color: #000000;" outcome="/produit/List" value="Factures"/></li>
                                     </ul>
                                 </li>
                                 <li class="dropdown">
                                     <a class="dropdown-toggle" data-toggle="dropdown" href="#" style="font-size: 12pt; font-weight: bold;width: auto;">Clients</a>
                                     <ul class="dropdown-menu">
                                         <li><h:link style="font-size: 13pt; color: #000000;" outcome="/produit/List" value="Clients"/></li>
-                                        <li><h:link style="font-size: 13pt; color: #000000;" outcome="/categorie/List" value="Adresses"/></li>
+                                        <li><h:link style="font-size: 13pt; color: #000000;" outcome="/produit/List" value="Adresses"/></li>
+                                    </ul>
+                                </li>
+                                <li class="dropdown">
+                                    <a class="dropdown-toggle" data-toggle="dropdown" href="#" style="font-size: 12pt; font-weight: bold;width: auto;">Transport</a>
+                                    <ul class="dropdown-menu">
+                                        <li><h:link style="font-size: 13pt; color: #000000;" outcome="/employe/List" value="Transporteurs"/></li>
+                                        <li><h:link style="font-size: 13pt; color: #000000;" outcome="/employe/List" value="Tranches de prix"/></li>
+                                        <li><h:link style="font-size: 13pt; color: #000000;" outcome="/employe/List" value="Tranches de poids"/></li>
+
+                                    </ul>
+                                </li>
+                                <li class="dropdown">
+                                    <a class="dropdown-toggle" data-toggle="dropdown" href="#" style="font-size: 12pt; font-weight: bold;width: auto;">Administration</a>
+                                    <ul class="dropdown-menu">
+                                        <li><h:link style="font-size: 13pt; color: #000000;" outcome="/employe/#{employeController.prepareList()}.xhtml" value="Employes"/></li>
+                                        <li><h:link style="font-size: 13pt; color: #000000;" outcome="/employe/List" value="Employes"/></li>
                                     </ul>
                                 </li>
                             </ul>
@@ -83,7 +112,6 @@
             </ul>
         </div-->
         <b:heroUnit styleClass="span10" style="padding-top: 10px;">
-            <img style="float: left;" src="#{request.contextPath}/faces/resources/images/logo.png" width="90px"/>
             <div style="padding-top: 20px">
                 <h3>
                     <ui:insert name="title" style="margin-top: 20px ;">Default Title</ui:insert>

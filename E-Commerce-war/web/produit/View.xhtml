@@ -14,33 +14,32 @@
             <h:panelGroup id="messagePanel" layout="block">
                 <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
             </h:panelGroup>
-            <h:form>
-                <h:panelGrid columns="2">
-                    <h:outputText value="#{bundle.ViewProduitLabel_fournisseur}"/>
-                    <h:outputText value="#{produitController.selected.fournisseur}" title="#{bundle.ViewProduitTitle_fournisseur}"/>
-                    <h:outputText value="#{bundle.ViewProduitLabel_id}"/>
-                    <h:outputText value="#{produitController.selected.id}" title="#{bundle.ViewProduitTitle_id}"/>
-                    <h:outputText value="#{bundle.ViewProduitLabel_libelle}"/>
-                    <h:outputText value="#{produitController.selected.libelle}" title="#{bundle.ViewProduitTitle_libelle}"/>
-                    <h:outputText value="#{bundle.ViewProduitLabel_description}"/>
-                    <h:outputText value="#{produitController.selected.description}" title="#{bundle.ViewProduitTitle_description}"/>
-                    <h:outputText value="#{bundle.ViewProduitLabel_photo}"/>
-                    <h:outputText value="#{produitController.selected.photo}" title="#{bundle.ViewProduitTitle_photo}"/>
-                    <h:outputText value="#{bundle.ViewProduitLabel_nouveaute_prod}"/>
-                    <h:outputText value="#{produitController.selected.nouveaute_prod}" title="#{bundle.ViewProduitTitle_nouveaute_prod}"/>
-                    <h:outputText value="#{bundle.ViewProduitLabel_solde_prod}"/>
-                    <h:outputText value="#{produitController.selected.solde_prod}" title="#{bundle.ViewProduitTitle_solde_prod}"/>
-                    <h:outputText value="#{bundle.ViewProduitLabel_prix_livraison}"/>
-                    <h:outputText value="#{produitController.selected.prix_livraison}" title="#{bundle.ViewProduitTitle_prix_livraison}"/>
-                    <h:outputText value="#{bundle.ViewProduitLabel_unite}"/>
-                    <h:outputText value="#{produitController.selected.unite}" title="#{bundle.ViewProduitTitle_unite}"/>
-                    <h:outputText value="#{bundle.ViewProduitLabel_unite_prix}"/>
-                    <h:outputText value="#{produitController.selected.unite_prix}" title="#{bundle.ViewProduitTitle_unite_prix}"/>
-                    <h:outputText value="#{bundle.ViewProduitLabel_createdBy}"/>
-                    <h:outputText value="#{produitController.selected.createdBy}" title="#{bundle.ViewProduitTitle_createdBy}"/>
-                    <h:outputText value="#{bundle.ViewProduitLabel_categorie}"/>
-                    <h:outputText value="#{produitController.selected.categorie}" title="#{bundle.ViewProduitTitle_categorie}"/>
-                </h:panelGrid>
+            <h:form style="background-color: #EDF7FC;">
+                <div class="row">
+                    <div class="span2">
+                        <img src="#{request.contextPath}/faces/resources/images/#{produitController.selected.photo}" class="img-polaroid thumbnail"/>
+                    </div>
+                    <div class="span4" style="
+                         color: #808080;
+                         font-family: Arial,Arial,Century gothic,Tahoma,sans-serif; ">
+                        <h:panelGrid columns="2">
+                            <h:outputText value="Nom :"/>
+                            <h:outputText value="#{produitController.selected.libelle}" title="#{bundle.ViewProduitTitle_libelle}"/>
+                            <h:outputText value="#{bundle.ViewProduitLabel_description}"/>
+                            <h:outputText value="#{produitController.selected.description}" title="#{bundle.ViewProduitTitle_description}"/>
+                            <h:outputText value="#{bundle.ViewProduitLabel_solde_prod}"/>
+                            <h:outputText value="#{produitController.selected.solde_prod}" title="#{bundle.ViewProduitTitle_solde_prod}"/>
+                            <h:outputText value="Prix :"/>
+                            <h:outputText value="#{produitController.selected.unite_prix}" title="#{bundle.ViewProduitTitle_unite_prix}"/>
+                            <h:outputText value="#{bundle.ViewProduitLabel_createdBy}"/>
+                            <h:outputText value="#{produitController.selected.createdBy}" title="#{bundle.ViewProduitTitle_createdBy}"/>
+                            <h:outputText value="#{bundle.ViewProduitLabel_categorie}"/>
+                            <h:outputText value="#{produitController.selected.categorie}" title="#{bundle.ViewProduitTitle_categorie}"/>
+                            <h:outputText value="#{bundle.ViewProduitLabel_fournisseur}"/>
+                            <h:outputText value="#{produitController.selected.fournisseur}" title="#{bundle.ViewProduitTitle_fournisseur}"/>
+                        </h:panelGrid>
+                    </div>
+                </div>
                 <br />
                 <div class="span4 offset2 btn-toolbar">
                     <div class="btn-group">

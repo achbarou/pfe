@@ -27,14 +27,14 @@
             <h:panelGroup id="messagePanel" layout="block">
                 <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
             </h:panelGroup>
-            <h:form>
+            <h:form prependId="false">
                 <fieldset style="border:2px solid rgb(58,135,173); margin-left: 20px; margin-top: 20px; margin-bottom: 20px; -moz-border-radius:8px; -webkit-border-radius:8px; border-radius:8px;">
                     <legend style=" margin-bottom:0px; font-size: 30px;margin-right: 10px;
                             margin-left:16px; border-bottom: 0px; width: auto;">Information </legend>
                     <b:gridRow >
                         <b:gridColumn span="4">
                             <h:panelGrid columns="2">
-                                <h:outputLabel value="#{bundle.CreateProduitLabel_libelle}" for="libelle" />
+                                <h:outputLabel value="Nom :" for="libelle" />
                                 <h:inputText id="libelle" value="#{produitController.selected.libelle}" title="#{bundle.CreateProduitTitle_libelle}" />
                             </h:panelGrid>
                         </b:gridColumn>
@@ -45,9 +45,9 @@
                             </h:panelGrid>
                         </b:gridColumn>
                         <b:gridColumn span="4">
-                            <h:panelGrid columns="2">
+                            <h:panelGrid columns="2" style="border: none">
                                 <h:outputLabel value="Etat :" for="Etat" />
-                                <h:selectOneRadio id="etat" value="#{produitController.selected.etat}">
+                                <h:selectOneRadio id="etat" value="#{produitController.selected.etat}" >
                                     <f:selectItem itemValue='true' itemLabel="Activer" />
                                     <f:selectItem itemValue='false' itemLabel="Desactiver" />
                                 </h:selectOneRadio>
@@ -71,10 +71,17 @@
                             </h:panelGrid>
                         </b:gridColumn>
                         <b:gridColumn span="4">
-                            <h:panelGrid columns="2">
+                            <h:panelGrid columns="1">
                                 <a href="#" onclick="#{b:show('CreateCategorieModal')}" class="btn btn-primary"><i class="icon-white icon-plus-sign"></i>Créer un Categorie</a>
                             </h:panelGrid>
                         </b:gridColumn>
+                        <b:gridColumn span="4">
+                            <h:panelGrid columns="2">
+                                <h:outputLabel value="Poid :" for="poid" />
+                                <h:inputText id="poid" value="#{produitController.selected.poids}" title="Poid" />    
+                            </h:panelGrid>
+                        </b:gridColumn>
+                        <br/>
                     </b:gridRow>
                 </fieldset>
                 <fieldset style="border:2px solid rgb(58,135,173); margin-left: 20px; margin-top: 20px; margin-bottom: 20px; -moz-border-radius:8px; -webkit-border-radius:8px; border-radius:8px;">
@@ -100,39 +107,21 @@
                     <legend style=" margin-bottom:0px; font-size: 30px;margin-right: 10px;
                             margin-left:16px; border-bottom: 0px; width: auto;"> Image </legend>
                     <b:gridRow >
-                        <h:panelGrid columns="2" columnClasses="top,top" style="margin-right: 20px;">
-                            <rich:fileUpload fileUploadListener="#{fileUploadBean.listener}" id="upload" acceptedTypes="jpg, gif, png, bmp"
-                                             ontyperejected="alert('Only JPG, GIF, PNG and BMP files are accepted');" maxFilesQuantity="1">
-                                <a4j:ajax event="uploadcomplete" execute="@none" render="info" />
-                            </rich:fileUpload>
-                            <h:panelGroup id="info" layout="block" >
-                                <rich:panel bodyClass="info" style="margin-right: 60px;">
-                                    <f:facet name="header">
-                                        <h:outputText value="Uploaded Files Info" />
-                                    </f:facet>
-                                    <h:outputText value="No files currently uploaded" rendered="#{fileUploadBean.size==0}" />
-                                    <rich:dataGrid columns="1" value="#{fileUploadBean.files}" var="file" rowKeyVar="row">
-                                        <rich:panel bodyClass="rich-laguna-panel-no-header">
-                                            <h:panelGrid columns="2">
-                                                <a4j:mediaOutput element="img" mimeType="image/jpeg" createContent="#{fileUploadBean.paint}"
-                                                                 value="#{row}" style="width:100px; height:100px;" cacheable="false">
-                                                    <f:param value="#{fileUploadBean.timeStamp}" name="time" />
-                                                </a4j:mediaOutput>
-                                                <h:panelGrid columns="2">
-                                                    <h:outputText value="File Name:" />
-                                                    <h:outputText value="#{file.name}" />
-                                                    <h:outputText value="File Length(bytes):" />
-                                                    <h:outputText value="#{file.length}" />
-                                                </h:panelGrid>
-                                            </h:panelGrid>
-                                        </rich:panel>
-                                    </rich:dataGrid>
-                                </rich:panel>
-                                <br />
-                                <a4j:commandButton action="#{fileUploadBean.clearUploadData}" render="info, upload" value="Clear Uploaded Data"
-                                                   rendered="#{fileUploadBean.size>0}" />
-                            </h:panelGroup>
-                        </h:panelGrid>
+                        <b:gridColumn span="4">
+                            <h:panelGrid columns="2" columnClasses="top,top">
+                                <rich:fileUpload fileUploadListener="#{produitController.upload}" id="upload" acceptedTypes="jpg, gif, png, bmp"
+                                                 ontyperejected="alert('Only JPG, GIF, PNG and BMP files are accepted');" maxFilesQuantity="1">
+                                    <a4j:ajax event="uploadcomplete" execute="@none" render=""/>
+
+                                </rich:fileUpload>
+                                <style>
+                                    #upload{
+                                        height: 200px;
+                                        width: 300px;
+                                    }
+                                </style>
+                            </h:panelGrid>
+                        </b:gridColumn>
                     </b:gridRow>
                 </fieldset>
                 <fieldset style="border:2px solid rgb(58,135,173); margin-left: 20px; margin-top: 20px; margin-bottom: 20px; -moz-border-radius:8px; -webkit-border-radius:8px; border-radius:8px;">
@@ -140,40 +129,36 @@
                             margin-left:16px; border-bottom: 0px; width: auto;"> Prix </legend>
                     <b:gridRow >
                         <b:gridColumn span="4">
-                            <h:panelGrid columns="2">
-                                <h:outputLabel value="#{bundle.CreateProduitLabel_unite_prix}" for="unite_prix" />
-                                <h:inputText id="unite_prix" value="#{produitController.selected.unite_prix}" title="#{bundle.CreateProduitTitle_unite_prix}" />
+                            <h:panelGrid columns="4">
+                                <h:outputLabel value="prix :" for="unite_prix" />
+                                <h:inputText id="unite_prix" class="input-small" value="#{produitController.selected.unite_prix}" title="#{bundle.CreateProduitTitle_unite_prix}" />Dh
                             </h:panelGrid>
                         </b:gridColumn>
                         <b:gridColumn span="4">
                             <h:panelGrid columns="2">
-                                <h:outputLabel value="#{bundle.CreateProduitLabel_unite}" for="unite" />
-                                <h:inputText id="unite" value="#{produitController.selected.unite}" title="#{bundle.CreateProduitTitle_unite}" />
+                                <h:outputLabel value="par " for="unite" />
+                                <h:inputText id="unite" class="input-small" value="#{produitController.selected.unite}" title="unite" placeholder="unite" data-provide="typeahead" />
                             </h:panelGrid>
+                            <script>
+                            $(function (){
+                               var deps = [ 'unite','kg','litre','metre'];
+                               $('#unite').typeahead({source: deps});
+                            }); 
+                            </script>
                         </b:gridColumn>
-
-                    </b:gridRow>
-                    <b:gridColumn span="4">
-                        <h:panelGrid columns="2">
-                            <h:outputLabel value="Quantite" for="Quantite" />
-                            <h:inputText id="prix" value="#{produitController.selected.quantite}" title="Quantite" />
-                        </h:panelGrid>
-                    </b:gridColumn>
-                    <b:gridColumn span="4">
-                        <h:panelGrid columns="2">
-                            <h:outputLabel value="#{bundle.CreateProduitLabel_solde_prod}" for="solde_prod" />
-                            <h:inputText id="solde_prod" value="#{produitController.selected.solde_prod}" title="#{bundle.CreateProduitTitle_solde_prod}" />
-                        </h:panelGrid>
-                    </b:gridColumn>
-                </fieldset>
-                <fieldset style="border:2px solid rgb(58,135,173); margin-left: 20px; margin-top: 20px; margin-bottom: 20px; -moz-border-radius:8px; -webkit-border-radius:8px; border-radius:8px;">
-                    <legend style=" margin-bottom:0px; font-size: 30px;margin-right: 10px;
-                            margin-left:16px; border-bottom: 0px; width: auto;"> Transport </legend>
-                    <b:gridRow >
                         <b:gridColumn span="4">
                             <h:panelGrid columns="2">
-                                <h:outputLabel value="#{bundle.CreateProduitLabel_prix_livraison}" for="prix_livraison" />
-                                <h:inputText id="prix_livraison" value="#{produitController.selected.prix_livraison}" title="#{bundle.CreateProduitTitle_prix_livraison}" />
+                                <h:outputLabel value="Quantite" for="quantite" />
+                                <h:inputText id="quantite" value="#{produitController.selected.quantite}" title="Quantite" />
+                            </h:panelGrid>
+                        </b:gridColumn>
+                        <b:gridColumn span="4">
+                            <h:panelGrid columns="4">
+                                <h:outputLabel value="Solde" for="solde" />
+                                <div class="input-append">  
+                                    <h:inputText class="input-small" id="solde" value="#{produitController.selected.solde_prod}" title="solde" />
+                                    <span class="add-on">%</span>
+                                </div>
                             </h:panelGrid>
                         </b:gridColumn>
                     </b:gridRow>
@@ -239,7 +224,7 @@
                 </b:modal>
                 <b:gridColumn span="4">
                     <h:panelGrid columns="2">
-                        <h:commandLink class="btn btn-primary" action="#{produitController.create}" value="Save" />
+                        <h:commandLink id="validationButton" class="btn btn-primary" action="#{produitController.create}" value="Save" />
 
                         <h:commandLink  class="btn btn-success" action="#{produitController.prepareList}" value="#{bundle.CreateProduitShowAllLink}" immediate="true"> 
                         </h:commandLink>
@@ -248,6 +233,6 @@
 
             </h:form>
         </ui:define>
-    </ui:composition>
+    </ui:composition>   
 
 </html>

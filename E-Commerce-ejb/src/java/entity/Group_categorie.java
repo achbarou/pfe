@@ -5,11 +5,13 @@
 package entity;
 
 import java.io.Serializable;
+import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 
 /**
  *
@@ -17,6 +19,8 @@ import javax.persistence.ManyToOne;
  */
 @Entity
 public class Group_categorie implements Serializable {
+    @OneToMany(mappedBy = "super_cat")
+    private List<Categorie> categories;
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -31,6 +35,14 @@ public class Group_categorie implements Serializable {
 
     public void setEtat(Boolean etat) {
         this.etat = etat;
+    }
+
+    public List<Categorie> getCategories() {
+        return categories;
+    }
+
+    public void setCategories(List<Categorie> categories) {
+        this.categories = categories;
     }
 
     public String getDescription() {
@@ -89,7 +101,7 @@ public class Group_categorie implements Serializable {
 
     @Override
     public String toString() {
-        return libelle_GroupCat;
+        return this.libelle_GroupCat;
     }
     
 }
