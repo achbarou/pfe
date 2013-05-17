@@ -126,6 +126,39 @@ public class Employe implements Serializable {
         return password;
     }
 
+    public List<Produit> getProduits() {
+        return produits;
+    }
+
+    public void setProduits(List<Produit> produits) {
+        this.produits = produits;
+    }
+
+    public List<Group_categorie> getGroup_categories() {
+        return group_categories;
+    }
+
+    public void setGroup_categories(List<Group_categorie> group_categories) {
+        this.group_categories = group_categories;
+    }
+
+    public List<Fournisseur> getFournisseurs() {
+        return fournisseurs;
+    }
+
+    public void setFournisseurs(List<Fournisseur> fournisseurs) {
+        this.fournisseurs = fournisseurs;
+    }
+
+    public List<Categorie> getCategories() {
+        return categories;
+    }
+
+    public void setCategories(List<Categorie> categories) {
+        this.categories = categories;
+    }
+    
+
     public void setPassword(String password) {
         this.password = password;
     }
@@ -160,7 +193,7 @@ public class Employe implements Serializable {
 
     @Override
     public String toString() {
-        return nom +" "+Prenom;
+        return "entity.Employe[ id=" + id + " ]";
     }
     
 }

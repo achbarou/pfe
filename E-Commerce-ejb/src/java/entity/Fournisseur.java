@@ -63,6 +63,14 @@ public class Fournisseur implements Serializable {
         return email_fourni;
     }
 
+    public List<Produit> getProduits() {
+        return produits;
+    }
+
+    public void setProduits(List<Produit> produits) {
+        this.produits = produits;
+    }
+
     public void setEmail_fourni(String email_fourni) {
         this.email_fourni = email_fourni;
     }
@@ -131,7 +139,7 @@ public class Fournisseur implements Serializable {
 
     @Override
     public String toString() {
-        return nom_fourni;
+        return "entity.Fournisseur[ id=" + id + " ]";
     }
     
 }

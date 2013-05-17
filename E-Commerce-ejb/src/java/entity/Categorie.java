@@ -26,32 +26,9 @@ public class Categorie implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     private String libelle_cat;
-    private String Description;
-    private Boolean Etat ; 
+    private String description ;
+    private Boolean etat ;
 
-    public List<Produit> getProduits() {
-        return produits;
-    }
-
-    public void setProduits(List<Produit> produits) {
-        this.produits = produits;
-    }
-
-    public String getDescription() {
-        return Description;
-    }
-
-    public void setDescription(String Description) {
-        this.Description = Description;
-    }
-
-    public Boolean getEtat() {
-        return Etat;
-    }
-
-    public void setEtat(Boolean Etat) {
-        this.Etat = Etat;
-    }
     @ManyToOne
     private Group_categorie super_cat ;
     
@@ -80,6 +57,29 @@ public class Categorie implements Serializable {
 
     public void setLibelle_cat(String libelle_cat) {
         this.libelle_cat = libelle_cat;
+    }
+      public List<Produit> getProduits() {
+        return produits;
+    }
+
+    public void setProduits(List<Produit> produits) {
+        this.produits = produits;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String desription) {
+        this.description = desription;
+    }
+
+    public Boolean getEtat() {
+        return etat;
+    }
+
+    public void setEtat(Boolean etat) {
+        this.etat = etat;
     }
     
 
@@ -113,7 +113,7 @@ public class Categorie implements Serializable {
 
     @Override
     public String toString() {
-        return libelle_cat;
+        return "entity.Categorie[ id=" + id + " ]";
     }
     
 }

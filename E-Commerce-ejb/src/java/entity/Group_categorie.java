@@ -27,31 +27,7 @@ public class Group_categorie implements Serializable {
     private Long id;
     private String libelle_GroupCat;
     private Boolean etat ;
-    private String description ;
-
-    public Boolean getEtat() {
-        return etat;
-    }
-
-    public void setEtat(Boolean etat) {
-        this.etat = etat;
-    }
-
-    public List<Categorie> getCategories() {
-        return categories;
-    }
-
-    public void setCategories(List<Categorie> categories) {
-        this.categories = categories;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
+    private String Description ;
     @ManyToOne
     private Employe createdBy ;
     
@@ -101,7 +77,31 @@ public class Group_categorie implements Serializable {
 
     @Override
     public String toString() {
-        return this.libelle_GroupCat;
+        return "entity.Group_categorie[ id=" + id + " ]";
+    }
+    
+    public List<Categorie> getCategories() {
+        return categories;
+    }
+
+    public void setCategories(List<Categorie> categories) {
+        this.categories = categories;
+    }
+
+    public Boolean getEtat() {
+        return etat;
+    }
+
+    public void setEtat(Boolean etat) {
+        this.etat = etat;
+    }
+
+    public String getDescription() {
+        return Description;
+    }
+
+    public void setDescription(String Description) {
+        this.Description = Description;
     }
     
 }

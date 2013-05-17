@@ -25,15 +25,29 @@ public class Produit implements Serializable {
     private String Description;
     private String photo ;
     private String Nouveaute_prod ;
-    private String solde_prod ;
+    private Integer solde_prod ;
+    private Double quantite ;
+    private Double poids ;
+    private Double prix ;
+    private Boolean etat ;
+    private Boolean disponibilité ;
     private Double prix_livraison ;
     private String unite ;
     private Double unite_prix ;
-    private Boolean etat ;
-    private Boolean disponibilité ;
-    private Double quantite ;
-    private Double poids ;
-   // private String couleurs ; 
+    @ManyToOne
+    private Employe createdBy ;
+    @ManyToOne
+    private Categorie categorie ;
+    @ManyToOne
+    private Fournisseur fournisseur;
+    
+    public Double getQuantite() {
+        return quantite;
+    }
+
+    public void setQuantite(Double quantite) {
+        this.quantite = quantite;
+    }
 
     public Double getPoids() {
         return poids;
@@ -42,14 +56,22 @@ public class Produit implements Serializable {
     public void setPoids(Double poids) {
         this.poids = poids;
     }
-    
-    
-    @ManyToOne
-    private Employe createdBy ;
-    @ManyToOne
-    private Categorie categorie ;
-    @ManyToOne
-    private Fournisseur fournisseur;
+
+    public Boolean getEtat() {
+        return etat;
+    }
+
+    public void setEtat(Boolean etat) {
+        this.etat = etat;
+    }
+
+    public Boolean getDisponibilité() {
+        return disponibilité;
+    }
+
+    public void setDisponibilité(Boolean disponibilité) {
+        this.disponibilité = disponibilité;
+    }
 
     public Fournisseur getFournisseur() {
         return fournisseur;
@@ -100,37 +122,22 @@ public class Produit implements Serializable {
         this.Nouveaute_prod = Nouveaute_prod;
     }
 
-    public String getSolde_prod() {
+    public Integer getSolde_prod() {
         return solde_prod;
     }
 
-    public void setSolde_prod(String solde_prod) {
+    public void setSolde_prod(Integer solde_prod) {
         this.solde_prod = solde_prod;
     }
 
-    public Boolean getEtat() {
-        return etat;
+    public Double getPrix() {
+        return prix;
     }
 
-    public void setEtat(Boolean etat) {
-        this.etat = etat;
+    public void setPrix(Double prix) {
+        this.prix = prix;
     }
 
-    public Boolean getDisponibilité() {
-        return disponibilité;
-    }
-
-    public void setDisponibilité(Boolean disponibilité) {
-        this.disponibilité = disponibilité;
-    }
-
-    public Double getQuantite() {
-        return quantite;
-    }
-
-    public void setQuantite(Double quantite) {
-        this.quantite = quantite;
-    }
     public Double getPrix_livraison() {
         return prix_livraison;
     }
@@ -193,7 +200,7 @@ public class Produit implements Serializable {
 
     @Override
     public String toString() {
-        return Libelle;
+        return "entity.Produit[ id=" + id + " ]";
     }
     
 }
