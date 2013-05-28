@@ -110,7 +110,7 @@
                         <b:gridColumn span="4">
                             <h:panelGrid columns="2" columnClasses="top,top">
                                 <rich:fileUpload fileUploadListener="#{produitController.upload}" id="upload" acceptedTypes="jpg, gif, png, bmp"
-                                                 ontyperejected="alert('Only JPG, GIF, PNG and BMP files are accepted');" maxFilesQuantity="1">
+                                                 ontyperejected="alert('Only JPG, GIF, PNG and BMP files are accepted');" maxFilesQuantity="1"  >
                                     <a4j:ajax event="uploadcomplete" execute="@none" render=""/>
 
                                 </rich:fileUpload>
@@ -118,6 +118,7 @@
                                     #upload{
                                         height: 200px;
                                         width: 300px;
+                                        background-color: #CCCCCC ;
                                     }
                                 </style>
                             </h:panelGrid>

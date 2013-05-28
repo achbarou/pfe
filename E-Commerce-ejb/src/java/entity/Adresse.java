@@ -9,6 +9,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 
 /**
  *
@@ -20,6 +21,70 @@ public class Adresse implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+    private String adresse_person ;
+    private String ville;
+    private String pays;
+    private String information;
+    private String codePostale ;
+    private String aliasAddress ;
+    @ManyToOne
+    private Client client ;
+
+    public String getAdresse_person() {
+        return adresse_person;
+    }
+
+    public void setAdresse_person(String adresse_person) {
+        this.adresse_person = adresse_person;
+    }
+
+    public String getVille() {
+        return ville;
+    }
+
+    public void setVille(String ville) {
+        this.ville = ville;
+    }
+
+    public String getPays() {
+        return pays;
+    }
+
+    public void setPays(String pays) {
+        this.pays = pays;
+    }
+
+    public String getInformation() {
+        return information;
+    }
+
+    public void setInformation(String information) {
+        this.information = information;
+    }
+
+    public String getCodePostale() {
+        return codePostale;
+    }
+
+    public void setCodePostale(String codePostale) {
+        this.codePostale = codePostale;
+    }
+
+    public String getAliasAddress() {
+        return aliasAddress;
+    }
+
+    public void setAliasAddress(String aliasAddress) {
+        this.aliasAddress = aliasAddress;
+    }
+
+    public Client getClient() {
+        return client;
+    }
+
+    public void setClient(Client client) {
+        this.client = client;
+    }
 
     public Long getId() {
         return id;

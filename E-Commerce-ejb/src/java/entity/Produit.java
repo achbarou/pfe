@@ -10,6 +10,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.persistence.Transient;
 
 /**
  *
@@ -25,14 +26,17 @@ public class Produit implements Serializable {
     private String Description;
     private String photo ;
     private String Nouveaute_prod ;
-    private Integer solde_prod ;
+    private Integer solde_prod = 0;
     private Double quantite ;
     private Double poids ;
-    private Double prix ;
     private Boolean etat ;
     private Boolean disponibilité ;
     private Double prix_livraison ;
     private String unite ;
+    @Transient
+    private Integer quantiteSelect = 1 ;
+    @Transient 
+    private Double prixApresSolde = (double) 0 ;
     private Double unite_prix ;
     @ManyToOne
     private Employe createdBy ;
@@ -49,6 +53,15 @@ public class Produit implements Serializable {
         this.quantite = quantite;
     }
 
+    public Double getPrixApresSolde() {
+        
+        return  getUnite_prix() - ( getUnite_prix() * getSolde_prod()/100);
+    }
+
+    public void setPrixApresSolde(Double PrixApresSolde) {
+        this.prixApresSolde = PrixApresSolde;
+    }
+    
     public Double getPoids() {
         return poids;
     }
@@ -80,6 +93,15 @@ public class Produit implements Serializable {
     public void setFournisseur(Fournisseur fournisseur) {
         this.fournisseur = fournisseur;
     }
+
+    public Integer getQuantiteSelect() {
+        return quantiteSelect;
+    }
+
+    public void setQuantiteSelect(Integer quantiteSelect) {
+        this.quantiteSelect = quantiteSelect;
+    }
+    
     
 
     public Long getId() {
@@ -128,14 +150,6 @@ public class Produit implements Serializable {
 
     public void setSolde_prod(Integer solde_prod) {
         this.solde_prod = solde_prod;
-    }
-
-    public Double getPrix() {
-        return prix;
-    }
-
-    public void setPrix(Double prix) {
-        this.prix = prix;
     }
 
     public Double getPrix_livraison() {
