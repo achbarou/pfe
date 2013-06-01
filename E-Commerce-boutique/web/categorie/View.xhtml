@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ViewCategorieTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputText value="#{bundle.ViewCategorieLabel_id}"/>
+                    <h:outputText value="#{categorieController.selected.id}" title="#{bundle.ViewCategorieTitle_id}"/>
+                    <h:outputText value="#{bundle.ViewCategorieLabel_libelle_cat}"/>
+                    <h:outputText value="#{categorieController.selected.libelle_cat}" title="#{bundle.ViewCategorieTitle_libelle_cat}"/>
+                    <h:outputText value="#{bundle.ViewCategorieLabel_super_cat}"/>
+                    <h:outputText value="#{categorieController.selected.super_cat}" title="#{bundle.ViewCategorieTitle_super_cat}"/>
+                    <h:outputText value="Description :"/>
+                    <h:outputText value="#{categorieController.selected.description}" title="description"/>
+                    <h:outputText value="Etat "/>
+                    <h:outputText value="#{categorieController.selected.etat}" title="etat"/>
+                    <h:outputText value="#{bundle.ViewCategorieLabel_createdBye}"/>
+                    <h:outputText value="#{categorieController.selected.createdBye}" title="#{bundle.ViewCategorieTitle_createdBye}"/> 
+                </h:panelGrid>
+                 <div class="span4 offset2 btn-toolbar">
+                    <div class="btn-group">
+                        <h:commandLink class="btn btn-primary icon-plus-sign" action="#{categorieController.prepareCreate}" value=" Nouveau" />
+                        <h:link outcome="Edit" class="btn btn-warning icon-edit" value=" Edit"/>
+                        <h:commandLink class="btn btn-danger icon-remove" action="#{produitController.destroyAndView}" value=" suprimmer"/>
+                        <h:commandLink class="btn btn-info icon-eye-open" action="#{categorieController.prepareList}" value=" List"/>
+                    </div>
+                </div>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

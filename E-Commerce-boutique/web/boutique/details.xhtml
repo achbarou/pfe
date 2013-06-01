@@ -1,0 +1,40 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:b="http://richfaces.org/sandbox/bootstrap">
+    <h:body>
+        <ui:composition template="template.xhtml">
+            <ui:define name="title">
+                <h:outputText value="Accueil"></h:outputText>
+            </ui:define>
+            <ui:define name="body">
+                <b:modal></b:modal>
+                <div class="center_content">
+                    <div class="center_title_bar">#{produitController.selected.libelle}</div>
+                    <div class="prod_box_big">
+                        <div class="top_prod_box_big"></div>
+                        <div class="center_prod_box_big">
+                            <div class="product_img_big"> <a href="javascript:popImage('images/big_pic.jpg','Some Title')" title="header=[Zoom] body=[&nbsp;] fade=[on]"><img src="images/laptop.gif" alt="" border="0" /></a>
+                                <div class="thumbs"> <a href="http://www.free-css.com/" title="header=[Thumb1] body=[&nbsp;] fade=[on]"><img src="images/thumb1.gif" alt="" border="0" /></a> <a href="http://www.free-css.com/" title="header=[Thumb2] body=[&nbsp;] fade=[on]"><img src="images/thumb1.gif" alt="" border="0" /></a> <a href="http://www.free-css.com/" title="header=[Thumb3] body=[&nbsp;] fade=[on]"><img src="images/thumb1.gif" alt="" border="0" /></a> </div>
+                            </div>
+                            <div class="details_big_box">
+                                <div class="product_title_big">#{produitController.selected.description}</div>
+                                <div class="specifications"> Disponibilitate: <span class="blue">En stock</span><br />
+                                    solde : <span class="blue"></span><br />
+                                    Tip transport: <span class="blue">Mic</span><br />
+                                    Pretul include <span class="blue">TVA</span><br />
+                                </div>
+                                <div class="prod_price_big"><span class="reduce">350dh</span> <span class="price">#{produitController.selected.unite_prix}Dh</span></div>
+                                <a href="#" class="addtocart">add to cart</a> <a href="#" class="compare">compare</a> </div>
+                        </div>
+                        <div class="bottom_prod_box_big"></div>
+                    </div>
+                    <div class="center_title_bar">Similar products</div>
+                </div>
+            </ui:define>
+        </ui:composition>
+    </h:body>
+</html>
+

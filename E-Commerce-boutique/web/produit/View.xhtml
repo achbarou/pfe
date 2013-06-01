@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+
+            <h:outputText value="#{bundle.ViewProduitTitle}"></h:outputText>  
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form style="background-color: #EDF7FC;">
+                <div class="row">
+                    <div class="span2">
+                        <img src="#{request.contextPath}/faces/resources/images/produits/#{produitController.selected.photo}" class="img-polaroid thumbnail"/>
+                    </div>
+                    <div class="span4" style="
+                         color: #808080;
+                         font-family: Arial,Arial,Century gothic,Tahoma,sans-serif; ">
+                        <h:panelGrid columns="2">
+                            <h:outputText value="Nom :"/>
+                            <h:outputText value="#{produitController.selected.libelle}" title="#{bundle.ViewProduitTitle_libelle}"/>
+                            <h:outputText value="#{bundle.ViewProduitLabel_description}"/>
+                            <h:outputText value="#{produitController.selected.description}" title="#{bundle.ViewProduitTitle_description}"/>
+                            <h:outputText value="#{bundle.ViewProduitLabel_solde_prod}"/>
+                            <h:outputText value="#{produitController.selected.solde_prod}" title="#{bundle.ViewProduitTitle_solde_prod}"/>
+                            <h:outputText value="Prix :"/>
+                            <h:outputText value="#{produitController.selected.unite_prix}" title="#{bundle.ViewProduitTitle_unite_prix}"/>
+                            <h:outputText value="#{bundle.ViewProduitLabel_createdBy}"/>
+                            <h:outputText value="#{produitController.selected.createdBy}" title="#{bundle.ViewProduitTitle_createdBy}"/>
+                            <h:outputText value="#{bundle.ViewProduitLabel_categorie}"/>
+                            <h:outputText value="#{produitController.selected.categorie}" title="#{bundle.ViewProduitTitle_categorie}"/>
+                            <h:outputText value="#{bundle.ViewProduitLabel_fournisseur}"/>
+                            <h:outputText value="#{produitController.selected.fournisseur}" title="#{bundle.ViewProduitTitle_fournisseur}"/>
+                        </h:panelGrid>
+                    </div>
+                </div>
+                <br />
+                <div class="span4 offset2 btn-toolbar">
+                    <div class="btn-group">
+                        <h:commandLink class="btn btn-primary icon-plus-sign" action="#{produitController.prepareCreate}" value=" Nouveau" />
+                        <h:link outcome="Edit" class="btn btn-warning icon-edit" value=" Edit"/>
+                        <h:commandLink class="btn btn-danger icon-remove" action="#{produitController.destroyAndView}" value=" suprimmer"/>
+                        <h:commandLink class="btn btn-info icon-eye-open" action="#{produitController.prepareList}" value=" List"/>
+                    </div>
+                </div>
+
+
+
+                <br />
+
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ViewProduitIndexLink}"/>
+
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

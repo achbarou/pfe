@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ListProduitTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:form styleClass="jsfcrud_list_form">
+                <h:panelGroup id="messagePanel" layout="block">
+                    <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+                </h:panelGroup>
+                <h:outputText escape="false" value="#{bundle.ListProduitEmpty}" rendered="#{produitController.items.rowCount == 0}"/>
+                <h:panelGroup rendered="#{produitController.items.rowCount > 0}">
+                    <h:outputText value="#{produitController.pagination.pageFirstItem + 1}..#{produitController.pagination.pageLastItem + 1}/#{produitController.pagination.itemsCount}"/>&nbsp;
+                    <h:commandLink action="#{produitController.previous}" value="#{bundle.Previous} #{produitController.pagination.pageSize}" rendered="#{produitController.pagination.hasPreviousPage}"/>&nbsp;
+                    <h:commandLink action="#{produitController.next}" value="#{bundle.Next} #{produitController.pagination.pageSize}" rendered="#{produitController.pagination.hasNextPage}"/>&nbsp;
+                    <h:dataTable cellpadding="4" cellspacing="4" value="#{produitController.items}" var="item" border="0"  rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all">
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListProduitTitle_id}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.id}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="produit"/>
+                            </f:facet>
+                            <h:outputText value="#{item.libelle}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="image" />
+                            </f:facet>
+                            <img  src="#{request.contextPath}/faces/resources/images/produits/#{item.photo}" width="20%"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="quantite"/>
+                            </f:facet>
+                            <h:outputText value="#{item.quantite}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="prix de base " />
+                            </f:facet>
+                            <h:outputText value="#{item.unite_prix} Dh"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="crée par "/>
+                            </f:facet>
+                            <h:outputText value="#{item.createdBy}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="categorie"/>
+                            </f:facet>
+                            <h:outputText value="#{item.categorie.libelle_cat}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="Etat"/>
+                            </f:facet>
+                            <h:outputText value="#{item.etat}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="fournisseur "/>
+                            </f:facet>
+                            <h:outputText value="#{item.fournisseur.nom_fourni}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value=" Actions   "/>
+                            </f:facet>
+                            <h:commandLink action="#{produitController.prepareView}">
+                                <font size="+1" title="View"><i class="icon-eye-open" style="color: black"></i></font>
+                            </h:commandLink>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{produitController.prepareEdit}" >
+                                <font size="+1" title="Edit"><i class="icon-edit" style="color: Orange"></i></font>
+                            </h:commandLink>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{produitController.destroy}">
+                                <font size="+1" title="Remove"><i class="icon-remove" style="color: red"></i></font>
+                            </h:commandLink>
+                        </h:column>    
+                    </h:dataTable>
+                </h:panelGroup>
+                <br />
+                <h:commandLink class="btn btn-primary" action="#{produitController.prepareCreate}" >
+                    <i class="icon-white icon-plus-sign"></i> #{bundle.ListProduitCreateLink} 
+                </h:commandLink>
+                <br />
+                <br />
+
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:b="http://richfaces.org/sandbox/bootstrap">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.CreateProduitTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <fieldset style="border:2px solid rgb(58,135,173); margin-left: 20px; margin-top: 20px; margin-bottom: 20px; -moz-border-radius:8px; -webkit-border-radius:8px; border-radius:8px;">
+                    <legend style=" margin-bottom:0px; font-size: 30px;margin-right: 10px;
+                            margin-left:16px; border-bottom: 0px; width: auto;">Infos general:</legend>
+                    <b:gridRow >
+                        <b:gridColumn span="3">
+                            <h:panelGrid columns="2">
+                                <h:outputLabel value="prix Unitaire" for="pu" />
+                                <h:inputText id="pu" value="#{produitController.pu}" >
+                                    <f:ajax render="total" execute="pu qte" event="keyup" />
+                                </h:inputText>
+                            </h:panelGrid>
+                        </b:gridColumn>
+                        <b:gridColumn span="3">
+                            <h:panelGrid columns="2">
+                                <h:outputLabel value="Quantité" for="qte" />
+                                <h:inputText id="qte" value="#{produitController.qte}" >
+                                    <f:ajax render="total" execute="pu qte" event="keyup" />
+                                </h:inputText>
+                            </h:panelGrid>
+                        </b:gridColumn>
+                        <b:gridColumn span="3" rendered="#{1 eq 1}">
+                            <h:panelGrid columns="2">
+                                <h:outputLabel value="Total" for="total" />
+                                <h:inputText id="total" value="#{produitController.somme()}" />
+                            </h:panelGrid>
+                        </b:gridColumn>
+                    </b:gridRow>
+                </fieldset>
+
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

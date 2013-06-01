@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Scene Scope="Project" version="2">
+    <Scope Scope="Faces Configuration Only"/>
+    <Scope Scope="Project">
+        <Node id="employe/Edit.xhtml" x="650" y="300" zoom="true"/>
+        <Node id="client/List.xhtml" x="400" y="450" zoom="true"/>
+        <Node id="boutique/template.xhtml" x="150" y="300" zoom="true"/>
+        <Node id="template.xhtml" x="1400" y="150" zoom="true"/>
+        <Node id="fournisseur/Edit.xhtml" x="150" y="600" zoom="true"/>
+        <Node id="boutique/index.xhtml" x="150" y="1050" zoom="true"/>
+        <Node id="categorie/Create.xhtml" x="900" y="300" zoom="true"/>
+        <Node id="produit/Edit.xhtml" x="900" y="600" zoom="true"/>
+        <Node id="employe/View.xhtml" x="1150" y="300" zoom="true"/>
+        <Node id="boutique/authentification.xhtml" x="1400" y="450" zoom="true"/>
+        <Node id="fournisseur/View.xhtml" x="1650" y="150" zoom="true"/>
+        <Node id="employe/List.xhtml" x="150" y="150" zoom="true"/>
+        <Node id="client/Edit.xhtml" x="900" y="450" zoom="true"/>
+        <Node id="produit/List.xhtml" x="400" y="600" zoom="true"/>
+        <Node id="categorie/View.xhtml" x="150" y="900" zoom="true"/>
+        <Node id="produit/Create.xhtml" x="900" y="150" zoom="true"/>
+        <Node id="employe/Create.xhtml" x="1650" y="300" zoom="true"/>
+        <Node id="group_categorie/Create.xhtml" x="650" y="600" zoom="true"/>
+        <Node id="categorie/List.xhtml" x="400" y="300" zoom="true"/>
+        <Node id="boutique/details.xhtml" x="1150" y="150" zoom="true"/>
+        <Node id="produit/testAjax.xhtml" x="650" y="150" zoom="true"/>
+        <Node id="client/Create.xhtml" x="400" y="900" zoom="true"/>
+        <Node id="group_categorie/Edit.xhtml" x="400" y="750" zoom="true"/>
+        <Node id="fournisseur/List.xhtml" x="1150" y="450" zoom="true"/>
+        <Node id="group_categorie/List.xhtml" x="400" y="150" zoom="true"/>
+        <Node id="group_categorie/View.xhtml" x="150" y="750" zoom="true"/>
+        <Node id="fournisseur/Create.xhtml" x="650" y="750" zoom="true"/>
+        <Node id="categorie/Edit.xhtml" x="1150" y="600" zoom="true"/>
+        <Node id="index.xhtml" x="1900" y="150" zoom="true"/>
+        <Node id="boutique/panier.xhtml" x="150" y="450" zoom="false"/>
+        <Node id="produit/View.xhtml" x="650" y="450" zoom="true"/>
+        <Node id="client/View.xhtml" x="1400" y="300" zoom="true"/>
+    </Scope>
+    <Scope Scope="All Faces Configurations"/>
+</Scene>

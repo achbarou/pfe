@@ -1,0 +1,53 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:b="http://richfaces.org/sandbox/bootstrap"
+      xmlns:rich="http://richfaces.org/rich">
+    <h:body>
+        <ui:composition template="template.xhtml">
+            <ui:define name="title">
+                <h:outputText value="Identifiez-vous"></h:outputText>
+            </ui:define>
+            <ui:define name="body">
+                <b:modal></b:modal>
+                <div class="center_content">
+                    <div class="center_title_bar">Identifiez-vous</div>
+                    <div class="prod_box_big">
+                        <div class="">
+                            <div class="row">
+                                <div class="span4 offset1">
+                                    <rich:panel header="Identifiez-vous">
+                                        <h:form  style="padding: 10px;">
+                                            <fieldset>
+                                                <p>Saisissez votre adresse e-mail pour créer votre compte.</p>
+                                                <h:panelGrid columns="2">
+                                                    <h:outputLabel class="control-label" for="inputEmail" value="Adresse e-mail :" />
+                                                    <h:inputText value="#{userController.selected.email}" class="" id="inputEmail"  >
+                                                        <rich:placeholder value="E-mail..." />
+                                                    </h:inputText>
+                                                    <h:outputLabel class="control-label" for="inputPass" value="Mote de passe  :" />
+                                                    <h:inputSecret  value="#{userController.selected.password}" class="" id="inputPass"  >
+                                                        <rich:placeholder value="********" />
+                                                    </h:inputSecret>
+                                                </h:panelGrid>
+                                                <h:panelGroup id="messagePanel" layout="block">
+                                                    <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+                                                </h:panelGroup>
+                                                <hr /> 
+                                                <h:link style="" outcome="client/#{clientController.prepareCreate()}.xhtml" value="Inscription"/>
+                                                <h:commandButton  class="btn btn-warning" action="#{userController.login()}" value="Identifiez-vous" style="float: right"/>
+                                            </fieldset>
+                                        </h:form>
+                                    </rich:panel>
+                                </div>
+                            </div>
+                            <br/><br/><br/>
+                        </div>
+                    </div>
+                </div>
+            </ui:define>
+        </ui:composition>
+    </h:body>
+</html>

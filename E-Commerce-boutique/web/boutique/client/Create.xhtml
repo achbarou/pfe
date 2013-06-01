@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:rich="http://richfaces.org/rich">
+
+    <ui:composition template="/boutique/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="Inscription"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <div class="center_content">
+                <div class="center_title_bar">Créez votre compte</div>
+                <div class="prod_box_big">
+                    <h:form>
+                        <rich:panel header="Vos informations personnelles">
+                            <h:panelGroup id="messagePanel" layout="block">
+                                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+                            </h:panelGroup>
+                            <h:panelGrid columns="2" style="text-align: center">
+                                <h:outputLabel value="#{bundle.CreateClientLabel_civilite}" for="civilite" />
+                                <h:selectOneRadio id="civilite" value="#{clientController.selected.civilite}" style="width: 200px">
+                                    <f:selectItem itemValue="Mr" itemLabel="Mr " />
+                                    <f:selectItem itemValue="Mme" itemLabel="Mme" />
+                                    <f:selectItem itemValue="Mlle" itemLabel="Mlle" />
+                                </h:selectOneRadio>
+                                <h:outputLabel value="#{bundle.CreateClientLabel_prenom}" for="prenom" />
+                                <h:inputText id="prenom" value="#{clientController.selected.prenom}" title="#{bundle.CreateClientTitle_prenom}" />
+                                <h:outputLabel value="#{bundle.CreateClientLabel_nom}" for="nom" />
+                                <h:inputText id="nom" value="#{clientController.selected.nom}" title="#{bundle.CreateClientTitle_nom}" />
+                                <h:outputLabel value="#{bundle.CreateClientLabel_mobile}" for="mobile" />
+                                <h:inputText id="mobile" value="#{clientController.selected.mobile}" title="#{bundle.CreateClientTitle_mobile}" />
+                                <h:outputLabel value="#{bundle.CreateClientLabel_tel}" for="tel" />
+                                <h:inputText id="tel" value="#{clientController.selected.tel}" title="#{bundle.CreateClientTitle_tel}" />
+                                <h:outputLabel value="#{bundle.CreateClientLabel_email}" for="email" />
+                                <h:inputText id="email" value="#{clientController.selected.email}" title="#{bundle.CreateClientTitle_email}" />
+                                <h:outputLabel value="#{bundle.CreateClientLabel_password}" for="password" />
+                                <h:inputSecret id="password" value="#{clientController.selected.password}" title="#{bundle.CreateClientTitle_password}" />
+                                <h:outputLabel value="Comfirmation password :" for="Repassword" />
+                                <h:inputSecret id="Repassword" value="" title="Comfirmation password" />
+                                <h:outputLabel value="Date de Naissance :" for="dateNaissance" />
+                                <h:panelGroup id="dateNaissance">
+                                    <h:selectOneMenu id="days" value="" style="width: 60px ;">
+                                        <f:selectItem itemValue="--" />
+                                        <f:selectItem itemValue="2" />
+                                        <f:selectItem itemValue="3"/>
+                                        <f:selectItem itemValue="4"/>
+                                        <f:selectItem itemValue="5"/>
+                                        <f:selectItem itemValue="6"/>
+                                    </h:selectOneMenu>
+                                    <h:selectOneMenu id="month" value="" style="width: 85px ;margin-left: 8px;">
+                                        <f:selectItem itemValue="Janvier" />
+                                        <f:selectItem itemValue="Février" />
+                                        <f:selectItem itemValue="Mars"/>
+                                        <f:selectItem itemValue="Avril"/>
+                                        <f:selectItem itemValue="Mai"/>
+                                        <f:selectItem itemValue="Juin"/>
+                                        <f:selectItem itemValue="Juillet"/>
+                                        <f:selectItem itemValue="Août"/>
+                                        <f:selectItem itemValue="Septembre"/>
+                                        <f:selectItem itemValue="Octobre"/>
+                                        <f:selectItem itemValue="Septembre"/>
+                                        <f:selectItem itemValue="Novembre"/>
+                                        <f:selectItem itemValue="Décembre"/>
+                                    </h:selectOneMenu>
+                                    <h:selectOneMenu id="annee" value="" style="width: 60px; margin-left: 8px;">
+                                        <f:selectItem itemValue="--" />
+                                        <f:selectItem itemValue="2012" />
+                                        <f:selectItem itemValue="2011"/>
+                                        <f:selectItem itemValue="2010"/>
+                                        <f:selectItem itemValue="2009"/>
+                                        <f:selectItem itemValue="2008"/>
+                                        <f:selectItem itemValue="2007"/>
+                                        <f:selectItem itemValue="2006"/>
+                                        <f:selectItem itemValue="2005"/>
+                                        <f:selectItem itemValue="2004"/>
+                                        <f:selectItem itemValue="2003"/>
+                                        <f:selectItem itemValue="2002"/>
+                                        <f:selectItem itemValue="2001"/>
+                                        <f:selectItem itemValue="2000"/>
+                                    </h:selectOneMenu>
+                                </h:panelGroup>
+                            </h:panelGrid>
+                        </rich:panel>
+                        <rich:panel header="Confidentialité des données clients">
+                            <h:selectBooleanCheckbox id="licence" value="" />
+                            <h:outputLabel value="Les informations personnelles que nous collectons sont destinées à mieux répondre à vos demandes et traiter vos commandes. Vous disposez à tout moment d’un droit d’accès, de modification et de suppression de vos informations personnelles que vous pouvez exercer via la page mon compte de ce site internet." for="licence" />
+                        </rich:panel>
+                        <br/>
+                        <div style="float: right">
+                            <h:commandLink class="btn btn-warning" action="#{clientController.test()}" value="S'inscrire" />
+                        </div>
+                    </h:form>
+                </div> 
+            </div>
+        </ui:define>
+    </ui:composition>
+
+</html>

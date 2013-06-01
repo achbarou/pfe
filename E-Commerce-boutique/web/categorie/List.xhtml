@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ListCategorieTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:form styleClass="jsfcrud_list_form">
+                <h:panelGroup id="messagePanel" layout="block">
+                    <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+                </h:panelGroup>
+                <h:outputText escape="false" value="#{bundle.ListCategorieEmpty}" rendered="#{categorieController.items.rowCount == 0}"/>
+                <h:panelGroup rendered="#{categorieController.items.rowCount > 0}">
+                    <h:outputText value="#{categorieController.pagination.pageFirstItem + 1}..#{categorieController.pagination.pageLastItem + 1}/#{categorieController.pagination.itemsCount}"/>&nbsp;
+                    <h:commandLink action="#{categorieController.previous}" value="#{bundle.Previous} #{categorieController.pagination.pageSize}" rendered="#{categorieController.pagination.hasPreviousPage}"/>&nbsp;
+                    <h:commandLink action="#{categorieController.next}" value="#{bundle.Next} #{categorieController.pagination.pageSize}" rendered="#{categorieController.pagination.hasNextPage}"/>&nbsp;
+                    <h:dataTable value="#{categorieController.items}" var="item" border="0" cellpadding="2" cellspacing="0" rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" >
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListCategorieTitle_id}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.id}"/>
+                        </h:column> 
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#libelle "/>
+                            </f:facet>
+                            <h:outputText value="#{item.libelle_cat}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListCategorieTitle_super_cat}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.super_cat}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="Etat :"/>
+                            </f:facet>
+                            <h:outputText value="#{item.etat}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListCategorieTitle_createdBye}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.createdBye}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value=" Action  "/>
+                            </f:facet>
+                            <h:commandLink action="#{categorieController.prepareView}">
+                                <font size="+1" title="View"><i class="icon-eye-open" style="color: black" ></i></font>
+                            </h:commandLink>
+                            <h:commandLink action="#{categorieController.prepareEdit}" >
+                                <font size="+1" title="Edit"><i class="icon-edit" style="color: Orange" ></i></font>
+                            </h:commandLink>
+                            <h:commandLink action="#{categorieController.destroy}">
+                                <font size="+1" title="Remove"><i class="icon-remove" style="color: red" ></i></font>
+                            </h:commandLink>
+                        </h:column>
+                    </h:dataTable>
+                </h:panelGroup>
+                <br />
+                <h:commandLink class="btn btn-primary" action="#{categorieController.prepareCreate}">
+                    <i class="icon-white icon-plus-sign"></i>  #{bundle.ListCategorieCreateLink}
+                </h:commandLink>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

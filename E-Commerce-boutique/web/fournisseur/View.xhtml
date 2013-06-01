@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ViewFournisseurTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                     <h:outputText value="#{bundle.ViewFournisseurLabel_id}"/>
+                    <h:outputText value="#{fournisseurController.selected.id}" title="#{bundle.ViewFournisseurTitle_id}"/>
+                    <h:outputText value="#{bundle.ViewFournisseurLabel_nom_fourni}"/>
+                    <h:outputText value="#{fournisseurController.selected.nom_fourni}" title="#{bundle.ViewFournisseurTitle_nom_fourni}"/>
+                    <h:outputText value="#{bundle.ViewFournisseurLabel_adresse_fourni}"/>
+                    <h:outputText value="#{fournisseurController.selected.adresse_fourni}" title="#{bundle.ViewFournisseurTitle_adresse_fourni}"/>
+                    <h:outputText value="#{bundle.ViewFournisseurLabel_email_fourni}"/>
+                    <h:outputText value="#{fournisseurController.selected.email_fourni}" title="#{bundle.ViewFournisseurTitle_email_fourni}"/>
+                    <h:outputText value="#{bundle.ViewFournisseurLabel_tel_fourni}"/>
+                    <h:outputText value="#{fournisseurController.selected.tel_fourni}" title="#{bundle.ViewFournisseurTitle_tel_fourni}"/>
+                    <h:outputText value="#{bundle.ViewFournisseurLabel_fax_fourni}"/>
+                    <h:outputText value="#{fournisseurController.selected.fax_fourni}" title="#{bundle.ViewFournisseurTitle_fax_fourni}"/>
+                    <h:outputText value="#{bundle.ViewFournisseurLabel_ville_fourni}"/>
+                    <h:outputText value="#{fournisseurController.selected.ville_fourni}" title="#{bundle.ViewFournisseurTitle_ville_fourni}"/>
+                    <h:outputText value="#{bundle.ViewFournisseurLabel_pays_fourni}"/>
+                    <h:outputText value="#{fournisseurController.selected.pays_fourni}" title="#{bundle.ViewFournisseurTitle_pays_fourni}"/>
+                    <h:outputText value="#{bundle.ViewFournisseurLabel_createdBy}"/>
+                    <h:outputText value="#{fournisseurController.selected.createdBy}" title="#{bundle.ViewFournisseurTitle_createdBy}"/> 
+                </h:panelGrid>
+                 <div class="span4 offset2 btn-toolbar">
+                    <div class="btn-group">
+                        <h:commandLink class="btn btn-primary icon-plus-sign" action="#{fournisseurController.prepareCreate}" value=" Nouveau" />
+                        <h:link outcome="Edit" class="btn btn-warning icon-edit" value=" Edit"/>
+                        <h:commandLink class="btn btn-danger icon-remove" action="#{fournisseurController.destroyAndView}" value=" suprimmer"/>
+                        <h:commandLink class="btn btn-info icon-eye-open" action="#{fournisseurController.prepareList}" value=" List"/>
+                    </div>
+                </div>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

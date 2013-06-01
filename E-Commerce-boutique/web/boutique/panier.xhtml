@@ -1,0 +1,78 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:b="http://richfaces.org/sandbox/bootstrap">
+    <h:body>
+        <ui:composition template="template.xhtml">
+            <ui:define name="title">
+                <h:outputText value="Details de panier"></h:outputText>
+            </ui:define>
+            <ui:define name="body">
+                <b:modal></b:modal>
+                <div class="center_content">
+                    <div class="center_title_bar">Votre Panier</div>
+                    <div class="prod_box_big">
+                        <div class="top_prod_box_big"></div>
+                        <div class="center_prod_box_big">
+                            <h:outputText rendered="#{panierController.products.size() eq 0}" value="panier vide " />
+                            <h:panelGroup layout="block" rendered="#{panierController.products.size() > 0}">
+                                <table class="table table-bordered table-striped table-condensed" style="width: 100%">
+                                    <p style="text-align: left">Votre panier contient 4 produits</p>
+                                    <thead>
+                                        <tr class="info">
+                                            <th>Article</th>
+                                            <th>Prix</th>
+                                            <th>Quantite</th>
+                                            <th>Total</th>
+                                            <th></th> 
+                                        </tr>
+                                    </thead>
+                                    <tfoot>
+                                        <tr>
+                                            <td colspan="3">Total produits TTC :</td>
+                                            <td colspan="2" class="price" style="text-align: right" >#{panierController.total} Dh</td>
+                                        </tr>
+                                        <tr>
+                                            <td colspan="3">Total frais de port TTC : :</td>
+                                            <td colspan="2" class="price" style="text-align: right" >Livraison Gratuit</td>
+                                        </tr>
+                                        <tr>
+                                            <td  colspan="3"></td>
+                                            <td colspan="2">
+                                                <p class="total_price_container">Total :</p>
+                                                <span style="font-size: 18px;font-weight: bold;padding: 15px; text-align: center" id="total_price">#{panierController.total} Dh</span>
+                                            </td>
+                                        </tr>
+                                    </tfoot>
+                                    <tbody>
+                                        <ui:repeat id="listcart" value="#{panierController.products}" var="product">
+                                            <tr>
+                                                <td><h:outputText value="#{product.libelle} "></h:outputText></td>
+                                                <td><h:outputText value="#{product.prixApresSolde} Dh" style="color: red"></h:outputText></td>
+                                                <td><h:outputText value="#{product.quantiteSelect} "></h:outputText></td>
+                                                <td><h:outputText value="#{product.quantiteSelect * product.prixApresSolde} Dh" style="color: red"></h:outputText> </td>
+                                                <td><h:commandLink style="padding-left: 5px" value="x" action="#{panierController.remove(product)}" ></h:commandLink> </td>
+                                            </tr>
+                                        </ui:repeat>
+                                    </tbody>
+                                </table>
+                                <div>
+                                    <h:link class="btn" style="float: left" outcome="index.xhtml" >
+                                        <i class="icon-backward icon-white"/> Continuer mes achats
+                                    </h:link>
+                                    <h:link class="btn btn-primary" style="float: right" outcome="index.xhtml">
+                                        Suivant <i class="icon-forward icon-white"/> 
+                                    </h:link>
+                                </div>
+                            </h:panelGroup>
+
+                        </div>
+                    </div> 
+                </div>
+            </ui:define>
+        </ui:composition>
+    </h:body>
+</html>
+

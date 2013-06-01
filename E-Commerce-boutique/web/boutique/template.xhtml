@@ -1,0 +1,167 @@
+<?xml version='1.0' encoding='UTF-8' ?> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html  xmlns="http://www.w3.org/1999/xhtml"
+       xmlns:ui="http://java.sun.com/jsf/facelets"
+       xmlns:h="http://java.sun.com/jsf/html" 
+       xmlns:f="http://java.sun.com/jsf/core"
+       xmlns:b="http://richfaces.org/sandbox/bootstrap">
+    <h:head>
+        <title><ui:insert name="title">Default Title</ui:insert></title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <script src="#{request.contextPath}/resources/js/jquery.dataTables.js" ></script>
+        <link rel="stylesheet" href="#{request.contextPath}/resources/css/DT_bootstrap.css" />
+        <script src="#{request.contextPath}/resources/js/DT_bootstrap.js" ></script>   
+        <link rel="stylesheet" media='screen' type="text/css" href="#{request.contextPath}/resources/template.css" />
+        <script type="text/javascript" src="js/boxOver.js"></script>
+    </h:head>
+    <h:body>
+        <h:form>
+            <b:modal></b:modal>
+            <div id="main_container">
+                <br/>
+                <div class="header">
+                    <div style="float: right;">
+                        <div id="cart" rel="popover" style="background: url('#{request.contextPath}/resources/images/cart_panier.gif') no-repeat scroll 10px 9px #EEEEEE;
+                             border-radius: 3px 3px 3px 3px;
+                             display: block;
+                             height: 15px;
+                             width: 130px;
+                             margin-bottom: 10px;
+                             padding: 15px 27px 10px 43px;">
+                            <h:link  outcome="/boutique/panier.xhtml">
+                                <h:outputText style="color:#000;" value="Panier : "></h:outputText>
+                                <h:outputText rendered="#{panierController.products.size() eq 0 }" value="(vide)"/>
+                                <h:outputText rendered="#{panierController.products.size() > 0 }" style="color:#000;font-weight:bold ;font-size:18px  " value="#{panierController.numberOfelement} "></h:outputText> 
+                                <h:outputText rendered="#{panierController.products.size() > 0 }" style="color:#000;" value=" Produit" /> 
+                            </h:link>
+                            <!--script>
+                                $(function ()  
+                                { $("#cart").popover({placement:'bottom', trigger:'click',
+                                        html: 'true',
+                                        title : '<span class="text-info"><strong>title!!</strong></span> <button type="button" id="close" class="close">&times;</button>',
+                                        content :'<div><div>Shopping cart</div><h:outputText value="panier vide" rendered="#{panierController.products.size() eq 0}"/><h:panelGroup rendered="#{panierController.products.size() > 0}"><ui:repeat id="CartProduct" value="#{panierController.products}" var="product"><h:outputText rendered="#{panierController.products.size() eq 0 }" value="panier vide" /><h:outputText value="#{product.quantiteSelect} "></h:outputText><h:outputText value="#{product.libelle} "></h:outputText><h:outputText value="#{product.prixApresSolde}Dh" style="color: red"></h:outputText> <h:commandLink style="padding-left: 5px" value="x" action="#{panierController.remove(product)}" ></h:commandLink><br/></ui:repeat><h:outputText class="" rendered="#{panierController.products.size()> 0}"></h:outputText><h:outputText rendered="#{panierController.products.size()> 0}" value="Totale :" /><h:outputText class="price" rendered="#{panierController.products.size()> 0}" value="#{panierController.total}" /><br/><h:link outcome="panier.xhtml" value="Commander" class="btn btn-primary" /></h:panelGroup></div>'
+                                    });});  
+                            </script-->
+                        </div>
+                        <h:panelGroup rendered="#{userController.loggedUser eq null}" >Bienvenue <h:link outcome="/boutique/authentification.xhtml" rel="nofollow"  style="border-left: 1px solid #000 ;padding-left: 5px; color: #333333;"><i class="icon-user" style=""></i> Identifiez-vous</h:link></h:panelGroup>
+                        <h:panelGroup rendered="#{userController.loggedUser ne null}" >Bienvenue  #{userController.loggedUser.nom} <h:commandLink action="#{userController.logout()}" rel="nofollow" style="border-left: 1px solid #000 ;padding: 5px; color: #333333;"><i class="icon-off"> </i> Déconnexion</h:commandLink></h:panelGroup>
+                    </div>
+                        <div class="input-append" style="margin-right: 50px ">
+                            <input type="text" class="" />
+                            <button class="btn btn-inverse" type="submit">Recherche</button>
+                        </div>
+                </div>
+                <br/><br/>
+                <div id="main_content">
+                    <div id="menu_tab" style="margin-left: 10px">
+                        <div class="left_menu_corner"></div>
+                        <ul class="menu">
+                            <li><a href="#" class="nav1"> Accueil</a></li>
+                            <li class="divider"></li>
+                            <li><a href="#" class="nav2"> Produits</a></li>
+                            <li class="#{userController.loggedUser ne null ? 'divider': ''}"></li>
+                            <li>
+                                <h:commandLink rendered="#{userController.loggedUser ne null}" value="Specials" class="nav3" /> 
+                            </li>
+                            <li class="#{userController.loggedUser eq null ? 'divider': ''}"></li>
+                            <li>
+                                <h:commandLink styleClass="nav4" rendered="#{userController.loggedUser eq null}" value=" identifiez-vous" />
+                            </li>
+                            <li class="#{userController.loggedUser eq null ? 'divider': ''}"></li>
+                            <li><h:commandLink styleClass="nav4" rendered="#{userController.loggedUser eq null}" value="Inscription" /></li>
+                            <li class="divider"></li>
+                            <li><a href="contact.html" class="nav6">Contact Us</a></li>
+                            <li class="divider"></li>
+
+                        </ul>
+                        <div class="right_menu_corner"></div>
+                    </div>
+                    <!-- end of menu tab -->
+                    <!-- Categorie  -->
+                    <div class="left_content">
+                        <div class="title_box">Categories</div>
+                        <ul class="left_menu">
+                            <ui:repeat value="#{group_categorieController.items}" var="item">
+                                <li class="even">
+                                    <a href="#item#{item.id}" class="accordion-group" data-toggle="collapse">#{item.libelle_GroupCat}</a>
+                                    <ul id="item#{item.id}" class="collapse">
+                                        <ui:repeat value="#{item.categories}" var="data">
+                                            <li class="accordion-inner">
+                                                <h:commandLink value="#{data.libelle_cat}" action="#{categorieController.select(data)}">
+
+                                                </h:commandLink>
+                                            </li>
+                                        </ui:repeat> 
+                                    </ul>
+                                </li>
+                            </ui:repeat>
+                        </ul>
+                        <div class="title_box">Fournisseur</div>
+                        <ul class="left_menu">
+                            <ui:repeat value="#{fournisseurController.items}" var="item">
+                                <li class="even">
+                                    <a href="" >#{item.nom_fourni}</a>
+                                </li>
+                            </ui:repeat>
+                        </ul>
+                        <div class="title_box">Newsletter</div>
+                        <div class="border_box">
+                            <input type="text" name="newsletter" class="newsletter_input" value="your email"/>
+                            <a href="#" class="join">join</a> </div>
+                        <div class="banner_adds"> <a href="#"><img src="#{request.contextPath}/resources/images/bann2.jpg" alt="" border="0" /></a> </div>
+                    </div>
+                    <!-- end of left content -->
+
+                    <!-- Content of template -->
+                    <div class="center_content">
+                        <p>
+                            <ui:insert name="body" > Default Body </ui:insert>
+                        </p>
+                    </div>
+                    <!-- end of center content -->
+                    <div class="right_content">
+                        <div class="shopping_cart">
+                            <div class="cart_title">Shopping cart</div>
+                            <h:outputText value="panier vide" rendered="#{panierController.products.size() eq 0}"/>
+                            <h:panelGroup rendered="#{panierController.products.size() > 0}"  styleClass="cart_details"> 
+                                <ui:repeat id="CartProduct1" value="#{panierController.products}" var="product">
+                                    <h:outputText rendered="#{panierController.products.size() eq 0 }" value="panier vide" />
+                                    <h:outputText value="#{product.quantiteSelect} "></h:outputText>
+                                    <h:outputText value="#{product.libelle} "></h:outputText>
+                                    <h:outputText value="#{product.prixApresSolde * product.quantiteSelect }Dh" style="color: red"></h:outputText>
+                                    <h:commandLink style="padding-left: 5px" value="x" action="#{panierController.remove(product)}" >
+                                    </h:commandLink><br/>
+                                </ui:repeat>
+                                <h:outputText class="border_cart" rendered="#{panierController.products.size()> 0}"></h:outputText>
+                                <h:outputText rendered="#{panierController.products.size()> 0}" value="Totale :" />
+                                <h:outputText class="price" rendered="#{panierController.products.size()> 0}" value="#{panierController.total}" />
+                                <br/>
+                                <h:link outcome="panier.xhtml" value="Commander" class="btn btn-primary" />
+                            </h:panelGroup>
+                        </div>
+                        <!--div class="title_box">What's new</div>
+                        <div class="border_box">
+                            <div class="product_title"><a href="details.html">Motorola 156 MX-VL</a></div>
+                            <div class="product_img"><a href="details.html"><img src="images/p2.gif" alt="" border="0" /></a></div>
+                            <div class="prod_price"><span class="reduce">350$</span> <span class="price">270$</span></div>
+                        </div>
+                        <div class="title_box">Special Products</div>
+                        <div class="border_box">
+                            <div class="product_title"><a href="details.html">Motorola 156 MX-VL</a></div>
+                            <div class="product_img"><a href="details.html"><img src="images/laptop.png" alt="" border="0" /></a></div>
+                            <div class="prod_price"><span class="reduce">350$</span> <span class="price">270$</span></div>
+                        </div>
+                        <div class="banner_adds"> <a href="#"><img src="images/bann1.jpg" alt="" border="0" /></a> </div-->
+                    </div>
+                    <!-- end of right content -->
+                </div>
+                <!-- end of main content -->
+                <div class="footer">
+
+                </div>
+            </div>
+
+            <!-- end of main_container -->
+        </h:form>
+    </h:body>
+</html>
